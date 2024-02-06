@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div><a href="{{ url_for('configuration', id=run.configuration.id) }}">Configuration {{ configuration.title or configuration.id }}</a></div>
+<h1>Run {{ run.id }}</h1>
+
+
+<textarea class="form-control text-monospace" style="font-size: 0.7rem;" disabled rows="10">{{ run.configuration_settings|tojson(indent=2) }}</textarea>
+
+<div class="table-responsive">
+    <table class="table table-sm table-bordered table-hover table-striped">
+        <tbody>
+            {% for prop in ['failure_event_count', 'skipped_event_count', 'new_event_count', 'updated_event_count', 'unchanged_event_count', 'deleted_event_count', 'status'] %}
+                <tr>
+                    <td>{{ _(prop) }}</td>
+                    <td>{{ run[prop] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h2>Log entries</h2>
+
+<div class="table-responsive">
+    <table class="table table-sm table-bordered table-hover table-striped">
+        <tbody>
+            {% for log_entry in run.log_entries %}
+                <tr>
+                    <td>{{ log_entry.created_at|datetimeformat }}</td>
+                    <td>
+                        {{ log_entry.message }}
+                        <textarea class="form-control text-monospace" style="font-size: 0.7rem;" disabled rows="10">{{ log_entry.context|tojson(indent=2) }}</textarea>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

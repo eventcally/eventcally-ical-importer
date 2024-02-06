@@ -1,0 +1,56 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flask",
+      "type": "python",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "project",
+        "FLASK_ENV": "development",
+        "FLASK_DEBUG": "1",
+        "FLASK_RUN_PORT": "5002"
+      },
+      "args": ["run", "--no-debugger"],
+      "justMyCode": false,
+      "jinja": true
+    },
+    {
+      "name": "Celery worker",
+      "type": "python",
+      "request": "launch",
+      "module": "celery",
+      "args": [
+        "-A",
+        "project.celery",
+        "worker",
+        "--loglevel=debug",
+        "--concurrency=1"
+      ],
+      "justMyCode": false,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Celery beat",
+      "type": "python",
+      "request": "launch",
+      "module": "celery",
+      "args": ["-A", "project.celery", "beat", "--loglevel=debug"],
+      "justMyCode": false,
+      "console": "integratedTerminal"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Flask/Celery",
+      "configurations": ["Flask", "Celery worker"],
+      "stopAll": true
+    },
+    {
+      "name": "Flask/Celery/Beat",
+      "configurations": ["Flask", "Celery worker", "Celery beat"],
+      "stopAll": true
+    }
+  ]
+}

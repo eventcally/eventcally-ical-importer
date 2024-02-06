@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block header %}
+<script>
+
+    function save() {
+      btn_loading($("#save_btn"));
+      fetch("{{ url_for('configurations_update_js_save', id=configuration.id) }}", {method:'put', body: new FormData(form)})
+        .then(_ => btn_loaded($("#save_btn")));
+    }
+
+    function reset_cache() {
+      if (!window.confirm("Reset cache?")) {
+        return;
+      }
+
+      btn_loading($("#reset_btn"));
+      fetch("{{ url_for('configurations_update_js_reset', id=configuration.id) }}", {method:'post'})
+        .then(_ => btn_loaded($("#reset_btn")));
+    }
+
+    function preview() {
+      btn_loading($("#preview_btn"));
+      const preview_run_div = document.getElementById("preview_run");
+      const form = document.getElementById("form");
+
+      preview_run_div.innerHTML = "";
+      fetch("{{ url_for('configurations_update_js_preview', id=configuration.id) }}", {method:'post', body: new FormData(form)})
+        .then(response => response.json())
+        .then(run => {
+          preview_run_div.innerHTML = JSON.stringify(run, null, 2);
+          btn_loaded($("#preview_btn"));
+        });
+    }
+
+    function finish() {
+      location.replace("{{ url_for('configuration', id=configuration.id) }}");
+    }
+
+    function delete_configuration() {
+      if (!window.confirm("Delete configuration?")) {
+        return;
+      }
+
+      btn_loading($("#delete_btn"));
+      fetch("{{ url_for('configurations_update_js_delete', id=configuration.id) }}", {method:'delete'})
+        .then(_ => location.replace("{{ url_for('configurations') }}"));
+    }
+
+</script>
+{% endblock %}
+
+{% macro render_field(id, field_type) %}
+<div class="form-group">
+  <label class="mb-0" for="{{ id }}">{{ _(id) }}</label>
+  <div class="input-group">
+    {% if field_type=="input" %}
+    <input class="form-control" id="{{ id }}" name="{{ id }}" type="{{ kwargs.get('input_type', 'text') }}" value="{{ configuration[id] or "" }}" />
+    {% elif field_type=="textarea" %}
+    <textarea class="form-control" id="{{ id }}" name="{{ id }}" cols="30" rows="1">{{ configuration[id] or "" }}</textarea>
+    {% endif %}
+  </div>
+</div>
+{% endmacro %}
+
+{% block content %}
+<h1>Update {{ configuration.title or configuration.id }}</h1>
+
+  <form id="form">
+    <div>
+      {{ render_field('title', 'input') }}
+      {{ render_field('organization_id', 'input') }}
+      {{ render_field('url', 'input', input_type='url') }}
+
+      {% for mapper_attr in configuration._mapper_attrs %}
+        {{ render_field(mapper_attr, 'textarea') }}
+      {% endfor %}
+    </div>
+  </form>
+
+  <div>
+    <button id="save_btn" class="btn btn-primary" onclick="save()">Save</button>
+    <button id="preview_btn" class="btn btn-secondary" onclick="preview()">Preview</button>
+    <button id="close_btn" class="btn btn-outline-secondary" onclick="finish()">Close</button>
+  </div>
+  <div class="mt-4">
+    <button id="reset_btn" class="btn btn-danger" onclick="reset_cache()">Reset cache</button>
+    <button id="delete_btn" class="btn btn-danger" onclick="delete_configuration()">Delete configuration</button>
+  </div>
+
+  <textarea id="preview_run" class="mt-4 form-control text-monospace" style="font-size: 0.7rem;" disabled rows="10"></textarea>
+{% endblock content %}

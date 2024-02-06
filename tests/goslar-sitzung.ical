@@ -1,0 +1,932 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+METHOD:PUBLISH
+PRODID:ALLRIS
+X-WR-CALNAME:Sitzungstermine
+X-WR-CALDESC:Internetkalender, abonniert aus ALLRIS
+X-PUBLISHED-TTL:PT60M
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2645
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240109T150000Z
+DTEND:20240109T153300Z
+SUMMARY:Sonder-Sitzung des Verwaltungsausschusses
+LOCATION:Gr. Sitzungssaal Rathaus (Zugang über die Freitreppe)\, Markt 1\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=1&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2646
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240110T080000Z
+DTEND:20240110T100000Z
+SUMMARY:Sitzung des Grundstücksverkehrsausschusses
+LOCATION:Rammelsberghaus (Besprechungszimmer 2.OG)\, Rammelberger Straße 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=1&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2638
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240111T160000Z
+DTEND:20240111T170000Z
+SUMMARY:Sitzung des Arbeitskreises ´Lokale Seniorenwoche´
+LOCATION:Sitzungsraum 01.004\, Charley-Jacob-Str. 3\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=1&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2636
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240116T150000Z
+DTEND:20240116T190000Z
+SUMMARY:Liniennetzworkshop Stadtwerke/Stadtbus
+LOCATION:Sparkasse Hildesheim Goslar Peine\, Rammelsberg-Haus\, Sitzungsraum EG\, Rammelsberger Straße 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=1&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2564
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240117T160000Z
+DTEND:20240117T180000Z
+SUMMARY:!!! ENTFÄLLT !!! Sitzung des Betriebsausschusses der Stadtwerke Goslar
+LOCATION:Sitzungsraum der Stadtwerke Goslar\, Stapelner Straße 6\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=1&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2643
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240118T160000Z
+DTEND:20240118T180000Z
+SUMMARY:Workshop Organisationsuntersuchung (AG-Finanzen)
+LOCATION:Sitzungsraum 01.004\, Charley-Jacob-Str. 3\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=1&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2565
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240124T160000Z
+DTEND:20240124T180000Z
+SUMMARY:!!! ENTFÄLLT  !!! Sitzung des Ortsrates im Stadtteil Hahnenklee
+LOCATION:Paul-Lincke-Saal\, Kurhausweg 7\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=1&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2655
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240124T160000Z
+DTEND:20240124T180000Z
+SUMMARY:Sitzung des Arbeitskreises Kultur
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=1&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2566
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240125T153000Z
+DTEND:20240125T180000Z
+SUMMARY:Sitzung des Ausschusses für Weltkulturerbe\, Stadtgeschichte und Kultur
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/to010.asp?SILFDNR=2566
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2567
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240131T160000Z
+DTEND:20240131T180000Z
+SUMMARY:!!! ENTFÄLLT !!! Sitzung des Ausschusses für Sicherheit\, Ordnung und Sport
+LOCATION:Feuerwehrhaus Goslar\,
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=1&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2568
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240206T160000Z
+DTEND:20240206T180000Z
+SUMMARY:Sitzung des Betriebsausschusses Betriebshof Goslar
+LOCATION:Sitzungsraum der Stadtwerke Goslar\, Stapelner Straße 6\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=2&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2569
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240207T160000Z
+DTEND:20240207T180000Z
+SUMMARY:Sitzung des Ausschusses für Wirtschaft
+LOCATION:Käthe-Kruse-Straße 13\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=2&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2570
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240208T160000Z
+DTEND:20240208T180000Z
+SUMMARY:Sitzung des Ausschusses für Bauen und Umwelt
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=2&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2571
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240213T160000Z
+DTEND:20240213T180000Z
+SUMMARY:Sitzung des Ausschusses für Zentrale Dienste und Finanzen
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=2&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2573
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240215T160000Z
+DTEND:20240215T180000Z
+SUMMARY:Sitzung des Betriebsausschusses des Goslarer Gebäude Managements
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=2&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2572
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240216T150000Z
+DTEND:20240216T180000Z
+SUMMARY:Sitzung des Ausschusses für Bildung\, Familie und Soziales
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=2&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2574
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240220T150000Z
+DTEND:20240220T170000Z
+SUMMARY:Sitzung des Verwaltungsausschusses
+LOCATION:Gr. Sitzungssaal Rathaus (Zugang über die Freitreppe)\, Markt 1\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=2&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2654
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240221T080000Z
+DTEND:20240221T100000Z
+SUMMARY:Sitzung des Grundstücksverkehrsausschusses
+LOCATION:Rammelsberghaus (Besprechungszimmer 2.OG)\, Rammelberger Straße 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=2&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2648
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240222T160000Z
+DTEND:20240222T180000Z
+SUMMARY:Ratsoffene Infoveranstaltung ´Marktplatzsanierung/Sanierung Feuchteschäden Rathaus´
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=2&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2575
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240227T160000Z
+DTEND:20240227T180000Z
+SUMMARY:Sitzung des Rates der Stadt Goslar
+LOCATION:Rathausdiele\, Rathaus (Zugang über die Freitreppe)\, Markt 1\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=2&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2647
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240228T150000Z
+DTEND:20240228T170000Z
+SUMMARY:Besichtigung der städt. Kita an der Schule - Kolpingstraße 3\, 38440 Wolfsburg
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=2&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2576
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240307T160000Z
+DTEND:20240307T180000Z
+SUMMARY:!!! ENTFÄLLT !!! Sitzung des Betriebsausschusses Stadtforst Goslar
+LOCATION:Sitzungsraum 01.004\, Charley-Jacob-Str. 3\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=3&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2577
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240311T230000Z
+DTEND:20240311T230000Z
+SUMMARY:Sitzung der Arbeitsgruppe ´Grundsatzfragen Kita´
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=3&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2635
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240313T160000Z
+DTEND:20240313T180000Z
+SUMMARY:Sitzung des Komitees für Partnerschaften und internationale Beziehungen
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=3&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2653
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240313T160000Z
+DTEND:20240313T180000Z
+SUMMARY:Sitzung des Ortsrates im Stadtteil Hahnenklee
+LOCATION:Paul-Lincke-Saal\, Kurhausweg 7\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=3&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2578
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240314T160000Z
+DTEND:20240314T180000Z
+SUMMARY:Sitzung des Ausschusses für Bauen und Umwelt
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=3&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2644
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240403T160000Z
+DTEND:20240403T180000Z
+SUMMARY:Sitzung des Sanierungsbeirates ´Soziale Stadt Jürgenohl´
+LOCATION:Sitzungsraum 01.004\, Charley-Jacob-Str. 3\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=4&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2579
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240404T150000Z
+DTEND:20240404T170000Z
+SUMMARY:Sitzung des Ausschusses für Weltkulturerbe\, Stadtgeschichte und Kultur
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=4&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2580
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240409T150000Z
+DTEND:20240409T180000Z
+SUMMARY:Sitzung des Ausschusses für Sicherheit\, Ordnung und Sport
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=4&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2581
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240410T150000Z
+DTEND:20240410T170000Z
+SUMMARY:Sitzung des Ausschusses für Wirtschaft
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=4&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2582
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240411T150000Z
+DTEND:20240411T170000Z
+SUMMARY:Sitzung des Ausschusses für Bildung\, Familie und Soziales
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=4&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2583
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240416T150000Z
+DTEND:20240416T170000Z
+SUMMARY:Sitzung des Ausschusses für Zentrale Dienste und Finanzen
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=4&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2584
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240417T150000Z
+DTEND:20240417T170000Z
+SUMMARY:Sitzung des Betriebsausschusses der Stadtwerke Goslar
+LOCATION:Sitzungsraum der Stadtwerke Goslar\, Stapelner Straße 6\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=4&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2585
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240418T150000Z
+DTEND:20240418T180000Z
+SUMMARY:Sitzung des Ausschusses für Bauen und Umwelt
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=4&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2586
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240423T140000Z
+DTEND:20240423T160000Z
+SUMMARY:Sitzung des Verwaltungsausschusses
+LOCATION:Gr. Sitzungssaal Rathaus (Zugang über die Freitreppe)\, Markt 1\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=4&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2649
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240425T150000Z
+DTEND:20240425T170000Z
+SUMMARY:Sitzung des Sanierungsbeirates  Goslar ´Altstadt - östlicher Teil´
+LOCATION:Sitzungsraum 01.004\, Charley-Jacob-Str. 3\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=4&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2587
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240430T150000Z
+DTEND:20240430T170000Z
+SUMMARY:Sitzung des Rates der Stadt Goslar
+LOCATION:Rathausdiele\, Rathaus (Zugang über die Freitreppe)\, Markt 1\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=4&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2588
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240515T140000Z
+DTEND:20240515T160000Z
+SUMMARY:Sitzung der Arbeitsgruppe Schulentwicklungsplanung
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=5&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2589
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240516T150000Z
+DTEND:20240516T180000Z
+SUMMARY:Sitzung des Ausschusses für Bauen und Umwelt
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=5&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2590
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240522T150000Z
+DTEND:20240522T170000Z
+SUMMARY:Sitzung des Ortsrates im Stadtteil Hahnenklee
+LOCATION:Paul-Lincke-Saal\, Kurhausweg 7\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=5&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2591
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240523T150000Z
+DTEND:20240523T170000Z
+SUMMARY:Sitzung des Ausschusses für Bildung\, Familie und Soziales
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=5&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2592
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240528T150000Z
+DTEND:20240528T170000Z
+SUMMARY:Sitzung des Betriebsausschusses Betriebshof Goslar
+LOCATION:Sitzungsraum der Stadtwerke Goslar\, Stapelner Straße 6\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=5&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2593
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240529T150000Z
+DTEND:20240529T180000Z
+SUMMARY:Sitzung des Ausschusses für Sicherheit\, Ordnung und Sport
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=5&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2594
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240530T150000Z
+DTEND:20240530T170000Z
+SUMMARY:Sitzung des Betriebsausschusses Stadtforst Goslar
+LOCATION:Sitzungsraum 01.004\, Charley-Jacob-Str. 3\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=5&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2595
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240604T150000Z
+DTEND:20240604T170000Z
+SUMMARY:Sitzung des Ausschusses für Zentrale Dienste und Finanzen
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=6&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2596
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240605T150000Z
+DTEND:20240605T170000Z
+SUMMARY:Sitzung des Ausschusses für Wirtschaft
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=6&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2640
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240606T150000Z
+DTEND:20240606T170000Z
+SUMMARY:Sitzung des Betriebsausschusses des Goslarer Gebäude Managements
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=6&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2598
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240611T140000Z
+DTEND:20240611T160000Z
+SUMMARY:Sitzung des Verwaltungsausschusses
+LOCATION:Gr. Sitzungssaal Rathaus (Zugang über die Freitreppe)\, Markt 1\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=6&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2642
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240612T150000Z
+DTEND:20240612T170000Z
+SUMMARY:Sitzung des Betriebsausschusses der Stadtwerke Goslar
+LOCATION:Sitzungsraum der Stadtwerke Goslar\, Stapelner Straße 6\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=6&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2650
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240613T150000Z
+DTEND:20240613T170000Z
+SUMMARY:Sitzung des Sanierungsbeirates ´Hahnenklee - Rathausstraße´
+LOCATION:Paul-Lincke-Saal\, Kurhausweg 7\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=6&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2599
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240618T150000Z
+DTEND:20240618T170000Z
+SUMMARY:Sitzung des Rates der Stadt Goslar
+LOCATION:Rathausdiele\, Rathaus (Zugang über die Freitreppe)\, Markt 1\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=6&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2604
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104409Z
+DTSTART:20240827T150000Z
+DTEND:20240827T170000Z
+SUMMARY:Sitzung des Ausschusses für Weltkulturerbe\, Stadtgeschichte und Kultur
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=8&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2600
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20240828T150000Z
+DTEND:20240828T170000Z
+SUMMARY:Sitzung des Ortsrates im Stadtteil Hahnenklee
+LOCATION:Paul-Lincke-Saal\, Kurhausweg 7\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=8&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2601
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20240829T150000Z
+DTEND:20240829T180000Z
+SUMMARY:Sitzung des Ausschusses für Bauen und Umwelt
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=8&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2602
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20240903T150000Z
+DTEND:20240903T170000Z
+SUMMARY:Sitzung des Betriebsausschusses Betriebshof Goslar
+LOCATION:Sitzungsraum der Stadtwerke Goslar\, Stapelner Straße 6\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=9&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2603
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20240904T150000Z
+DTEND:20240904T170000Z
+SUMMARY:Sitzung des Ausschusses für Wirtschaft
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=9&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2605
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20240910T150000Z
+DTEND:20240910T170000Z
+SUMMARY:Sitzung des Ausschusses für Bildung\, Familie und Soziales
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=9&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2606
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20240911T150000Z
+DTEND:20240911T170000Z
+SUMMARY:Sitzung des Betriebsausschusses der Stadtwerke Goslar
+LOCATION:Sitzungsraum der Stadtwerke Goslar\, Stapelner Straße 6\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=9&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2607
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20240912T150000Z
+DTEND:20240912T170000Z
+SUMMARY:Sitzung des Betriebsausschusses Stadtforst Goslar
+LOCATION:Sitzungsraum 01.004\, Charley-Jacob-Str. 3\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=9&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2608
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20240917T150000Z
+DTEND:20240917T170000Z
+SUMMARY:Sitzung des Ausschusses für Zentrale Dienste und Finanzen
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=9&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2629
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20240918T150000Z
+DTEND:20240918T180000Z
+SUMMARY:Sitzung des Ausschusses für Sicherheit\, Ordnung und Sport
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=9&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2609
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20240919T133000Z
+DTEND:20240919T180000Z
+SUMMARY:Sitzung des Betriebsausschusses des Goslarer Gebäude Managements
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=9&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2610
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20240924T140000Z
+DTEND:20240924T160000Z
+SUMMARY:Sitzung des Verwaltungsausschusses
+LOCATION:Gr. Sitzungssaal Rathaus (Zugang über die Freitreppe)\, Markt 1\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=9&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2611
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241001T150000Z
+DTEND:20241001T170000Z
+SUMMARY:Sitzung des Rates der Stadt Goslar
+LOCATION:Rathausdiele\, Rathaus (Zugang über die Freitreppe)\, Markt 1\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=10&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2612
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241023T140000Z
+DTEND:20241023T160000Z
+SUMMARY:Sitzung der Arbeitsgruppe Schulentwicklungsplanung
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=10&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2631
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241023T220000Z
+DTEND:20241023T220000Z
+SUMMARY:Info Stellenplan
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=10&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2613
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241029T160000Z
+DTEND:20241029T190000Z
+SUMMARY:Sitzung des Ausschusses für Zentrale Dienste und Finanzen
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=10&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2614
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241030T160000Z
+DTEND:20241030T190000Z
+SUMMARY:Sitzung des Ausschusses für Sicherheit\, Ordnung und Sport
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=10&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2615
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241105T160000Z
+DTEND:20241105T180000Z
+SUMMARY:Sitzung des Ausschusses für Bildung\, Familie und Soziales
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2651
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241106T170000Z
+DTEND:20241106T180000Z
+SUMMARY:Sitzung des Sanierungsbeirates ´Soziale Stadt Jürgenohl´
+LOCATION:Sitzungsraum 01.004\, Charley-Jacob-Str. 3\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2616
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241107T160000Z
+DTEND:20241107T190000Z
+SUMMARY:Sitzung des Ausschusses für Bauen und Umwelt
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2617
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241112T160000Z
+DTEND:20241112T180000Z
+SUMMARY:Sitzung des Ausschusses für Weltkulturerbe\, Stadtgeschichte und Kultur
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2618
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241113T160000Z
+DTEND:20241113T180000Z
+SUMMARY:Sitzung des Betriebsausschusses der Stadtwerke Goslar
+LOCATION:Sitzungsraum der Stadtwerke Goslar\, Stapelner Straße 6\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2619
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241114T160000Z
+DTEND:20241114T180000Z
+SUMMARY:Sitzung des Ausschusses für Wirtschaft
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2620
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241119T160000Z
+DTEND:20241119T180000Z
+SUMMARY:Sitzung des Betriebsausschusses Betriebshof Goslar
+LOCATION:Sitzungsraum der Stadtwerke Goslar\, Stapelner Straße 6\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2652
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241120T160000Z
+DTEND:20241120T180000Z
+SUMMARY:Sitzung des Sanierungsbeirates  Goslar ´Altstadt - östlicher Teil´
+LOCATION:Sitzungsraum 01.004\, Charley-Jacob-Str. 3\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2621
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241121T160000Z
+DTEND:20241121T180000Z
+SUMMARY:Sitzung des Betriebsausschusses Stadtforst Goslar
+LOCATION:Sitzungsraum 01.004\, Charley-Jacob-Str. 3\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2622
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241125T160000Z
+DTEND:20241125T180000Z
+SUMMARY:Sitzung des Ortsrates im Stadtteil Hahnenklee
+LOCATION:Paul-Lincke-Saal\, Kurhausweg 7\, 38644 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2623
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241126T160000Z
+DTEND:20241126T180000Z
+SUMMARY:Sitzung des Ausschusses für Zentrale Dienste und Finanzen
+LOCATION:
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2624
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241127T160000Z
+DTEND:20241127T190000Z
+SUMMARY:Sitzung des Betriebsausschusses des Goslarer Gebäude Managements
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2625
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241128T160000Z
+DTEND:20241128T180000Z
+SUMMARY:Sitzung des Ausschusses für Bauen und Umwelt
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=11&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2626
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241203T150000Z
+DTEND:20241203T170000Z
+SUMMARY:Sitzung des Verwaltungsausschusses
+LOCATION:Gr. Sitzungssaal Rathaus (Zugang über die Freitreppe)\, Markt 1\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=12&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2628
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241205T160000Z
+DTEND:20241205T180000Z
+SUMMARY:Sitzung des Ausschusses für Bildung\, Familie und Soziales
+LOCATION:Kulturmarktplatz\, Windsor-Maidenhead -EG\, Am Museumsufer 2\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=12&YY=2024
+END:VEVENT
+BEGIN:VEVENT
+UID:ALLRIS-Sitzung-2627
+PRIORITY:1
+CLASS:PUBLIC
+DTSTAMP:20240120T104410Z
+DTSTART:20241210T160000Z
+DTEND:20241210T180000Z
+SUMMARY:Sitzung des Rates der Stadt Goslar
+LOCATION:Rathausdiele\, Rathaus (Zugang über die Freitreppe)\, Markt 1\, 38640 Goslar
+DESCRIPTION:Exportiert aus ALLRIS am 20.01.2024\n\n\nDie Sitzung in ALLRIS net:\nhttps://www.goslar.sitzung-online.de/bi/si010.asp?MM=12&YY=2024
+END:VEVENT
+END:VCALENDAR

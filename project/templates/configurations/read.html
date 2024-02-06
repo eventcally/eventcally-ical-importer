@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block header %}
+<script>
+
+    function run_import() {
+        btn_loading($("#run_btn"));
+      const form = document.getElementById("form");
+
+      fetch("{{ url_for('configurations_update_js_import', id=configuration.id) }}", {method:'post'})
+        .then(response => response.json())
+        .then(run => {
+            window.location.reload();
+        });
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ _('Configuration') }} {{ configuration.title or configuration.id }}</h1>
+<p><a href="{{ url_for('configurations_update', id=configuration.id) }}" class="btn btn-secondary">{{ _('Update') }}</a></p>
+<p>{{ configuration.url }}</p>
+
+<textarea class="form-control text-monospace" style="font-size: 0.7rem;" disabled rows="10">{{ configuration.imported_events|tojson(indent=2) }}</textarea>
+
+<h2>Runs</h2>
+
+<button id="run_btn" class="btn btn-secondary" onclick="run_import()">Start run</button>
+
+<div class="table-responsive mt-4">
+    <table class="table table-sm table-bordered table-hover table-striped">
+        <tbody>
+            {% for run in configuration.runs %}
+                <tr>
+                    <td>{{ run.created_at|datetimeformat }}</td>
+                    <td>
+                        <a href="{{ url_for('run', configuration_id=configuration.id, run_id=run.id) }}">{{ run.id }}</a>
+                    </td>
+                    <td>{{ run.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

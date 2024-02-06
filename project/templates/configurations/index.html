@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>{{ _('Configurations') }}</h1>
+<p><a href="{{ url_for('configurations_create') }}" class="btn btn-secondary">{{ _('Create') }}</a></p>
+<div class="table-responsive">
+    <table class="table table-sm table-bordered table-hover table-striped">
+        <tbody>
+            {% for configuration in current_user.configurations %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('configuration', id=configuration.id) }}">{{ configuration.title or configuration.id }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

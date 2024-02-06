@@ -1,0 +1,70 @@
+version: "3.9"
+name: "eventcally-ical-importer-dev"
+
+x-web-env:
+  &default-web-env
+  FLASK_APP: main.py
+  DATABASE_URL: postgresql://eventcally:pass@db/eventcally
+  REDIS_URL: redis://default:pass@redis
+  GUNICORN_ACCESS_LOG: "-"
+  GUNICORN_LOG_LEVEL: debug
+  FLASK_DEBUG: 1
+  OAUTHLIB_INSECURE_TRANSPORT: 1
+  EVENTCALLY_URL: ${EVENTCALLY_URL}
+  EVENTCALLY_CLIENT_ID: ${EVENTCALLY_CLIENT_ID}
+  EVENTCALLY_CLIENT_SECRET: ${EVENTCALLY_CLIENT_SECRET}
+
+x-web:
+  &default-web
+  build: .
+  environment:
+    <<: *default-web-env
+  depends_on:
+    db:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+
+services:
+  db:
+    image: postgis/postgis:12-3.1
+    healthcheck:
+      test: "pg_isready --username=eventcally && psql --username=eventcally --list"
+      start_period: "5s"
+    environment:
+      - POSTGRES_DB=eventcally
+      - POSTGRES_USER=eventcally
+      - POSTGRES_PASSWORD=pass
+
+  redis:
+    image: bitnami/redis:6.2
+    healthcheck:
+      test: "redis-cli -a 'pass' ping | grep PONG"
+      start_period: "5s"
+    environment:
+      REDIS_PASSWORD: pass
+
+  web:
+    <<: *default-web
+    ports:
+      - "5002:5000"
+
+  worker:
+    <<: *default-web
+    command: celery -A project.celery worker --loglevel=error
+    entrypoint: []
+
+  scheduler:
+    <<: *default-web
+    command: celery -A project.celery beat --loglevel=error
+    entrypoint: []
+
+  flower:
+    image: mher/flower:1.2
+    ports:
+      - "5557:5555"
+    environment:
+      CELERY_BROKER_URL: redis://default:pass@redis
+    depends_on:
+      redis:
+        condition: service_healthy
