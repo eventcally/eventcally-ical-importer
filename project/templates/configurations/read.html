@@ -9,8 +9,27 @@
 
       fetch("{{ url_for('configurations_update_js_import', id=configuration.id) }}", {method:'post'})
         .then(response => response.json())
-        .then(run => {
-            window.location.reload();
+        .then(task => {
+            poll(task.id);
+        });
+    }
+
+    function poll(result_id) {
+        $.ajax({
+            url: "{{ url_for('configurations_update_js_import', id=configuration.id) }}",
+            type: "get",
+            dataType: "json",
+            data: "poll=" + result_id,
+            success: function (data) {
+                if (!data["ready"]) {
+                    setTimeout(function() {
+                        poll(result_id);
+                    }, 500);
+                    return;
+                }
+
+                window.location.reload();
+            }
         });
     }
 </script>

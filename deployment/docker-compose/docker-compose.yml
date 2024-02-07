@@ -36,7 +36,7 @@ services:
       test: "pg_isready --username=${POSTGRES_USER} && psql --username=${POSTGRES_USER} --list"
       start_period: "5s"
     ports:
-      - 5434:5432
+      - ${POSTGRES_PORT:-5432}:5432
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}

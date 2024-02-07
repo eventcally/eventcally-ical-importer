@@ -91,3 +91,22 @@ def force_locale(locale=None):
     with app.test_request_context() as ctx:
         ctx.babel_locale = locale
         yield
+
+
+def get_celery_poll_result(result_id):
+    from project import celery
+
+    try:
+        result = celery.AsyncResult(result_id)
+        ready = result.ready()
+        return {
+            "ready": ready,
+            "successful": result.successful() if ready else None,
+            "value": result.get() if ready else result.result,
+        }
+    except Exception as e:
+        return {
+            "ready": True,
+            "successful": False,
+            "error": getattr(e, "message", "Unknown error"),
+        }

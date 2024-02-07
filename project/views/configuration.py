@@ -110,7 +110,7 @@ def configurations_update_js_delete(id):
     return ""
 
 
-@app.route("/configurations/<id>/update/js/preview", methods=("POST",))
+@app.route("/configurations/<id>/update/js/preview", methods=["POST"])
 @login_required
 def configurations_update_js_preview(id):
     from project.api import RunSchema
@@ -138,23 +138,19 @@ def configurations_update_js_preview(id):
     return result
 
 
-@app.route("/configurations/<id>/update/js/import", methods=("POST",))
+@app.route("/configurations/<id>/update/js/import", methods=["GET", "POST"])
 @login_required
 def configurations_update_js_import(id):
-    from project.api import RunSchema
-    from project.ical_importer import IcalImporter
+    from project.celery import get_celery_poll_result
+    from project.celery_tasks import perform_run_task
 
     configuration = Configuration.query.filter(
         Configuration.id == id,
         Configuration.user_id == current_user.id,
     ).first_or_404(id)
 
-    importer = IcalImporter()
-    importer.dry = False
-    importer.perform(configuration)
+    if "poll" in request.args:
+        return get_celery_poll_result(request.args["poll"])
 
-    db.session.commit()
-
-    schema = RunSchema()
-    result = schema.dump(importer.run)
-    return result
+    result = perform_run_task.delay(configuration.id)
+    return {"id": result.id}
