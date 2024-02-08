@@ -47,8 +47,8 @@ class IcalImporter:
         if not self.calendar:
             try:
                 self.load_calendar_url(configuration.url)
-            except Exception:
-                self._log(f"Error loading url: {traceback.format_exc()}")
+            except Exception as e:
+                self._log(f"Error loading url: {str(e)}")
                 self.run.status = "failure"
 
         if self.calendar:
@@ -78,8 +78,13 @@ class IcalImporter:
                             event[key] = template.render(
                                 standard=standard, vevent=vevent
                             )
-                        except Exception:
-                            errors.append({"key": key, "msg": traceback.format_exc()})
+                        except Exception as e:
+                            errors.append(
+                                {
+                                    "key": key,
+                                    "msg": str(e),
+                                }
+                            )
                     else:
                         event[key] = standard[key]
 
@@ -128,8 +133,8 @@ class IcalImporter:
                             self.run.updated_event_count = (
                                 self.run.updated_event_count + 1
                             )
-                    except Exception:
-                        errors.append({"msg": traceback.format_exc()})
+                    except Exception as e:
+                        errors.append({"msg": f"{str(e)} {traceback.format_exc()}"})
 
                 if errors:
                     self.run.status = "failure"

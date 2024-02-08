@@ -21,15 +21,31 @@
 
     function preview() {
       btn_loading($("#preview_btn"));
-      const preview_run_div = document.getElementById("preview_run");
       const form = document.getElementById("form");
+      const preview_body = $("#preview_body");
+      preview_body.empty();
+      $("#preview_table").hide();
 
-      preview_run_div.innerHTML = "";
       fetch("{{ url_for('configurations_update_js_preview', id=configuration.id) }}", {method:'post', body: new FormData(form)})
         .then(response => response.json())
         .then(run => {
-          preview_run_div.innerHTML = JSON.stringify(run, null, 2);
+
+          $.each(run.log_entries, function(index, log_entry) {
+            if (log_entry.type == "vevent") {
+              const vevent = log_entry.context.vevent;
+              const standard = JSON.stringify(log_entry.context.standard, null, 2);
+              const event = JSON.stringify(log_entry.context.event, null, 2);
+              const errors = log_entry.context.errors.length > 0 ? JSON.stringify(log_entry.context.errors, null, 2) : " ";
+              const hints = log_entry.context.hints.length > 0 ? JSON.stringify(log_entry.context.hints, null, 2) : " ";
+              preview_body.append('<tr><td>' + vevent + '</td><td>' + standard + '</td><td>' + event + '</td><td>' + errors + '</td><td>' + hints + '</td></tr>');
+            } else {
+              preview_body.append('<tr><td colspan="5">' + log_entry.message + '</td></tr>');
+            }
+
+          });
+
           btn_loaded($("#preview_btn"));
+          $("#preview_table").show();
         });
     }
 
@@ -46,6 +62,10 @@
       fetch("{{ url_for('configurations_update_js_delete', id=configuration.id) }}", {method:'delete'})
         .then(_ => location.replace("{{ url_for('configurations') }}"));
     }
+
+    $(document).ready(function() {
+        $("#preview_table").hide();
+    });
 
 </script>
 {% endblock %}
@@ -88,5 +108,14 @@
     <button id="delete_btn" class="btn btn-danger" onclick="delete_configuration()">Delete configuration</button>
   </div>
 
-  <textarea id="preview_run" class="mt-4 form-control text-monospace" style="font-size: 0.7rem;" disabled rows="10"></textarea>
+  <div class="table-responsive mt-4" id="preview_table">
+    <table class="table table-sm table-bordered table-hover table-striped table-preview">
+        <thead>
+          <tr><th>Vevent</th><th>Standard</th><th>Event</th><th>Errors</th><th>Hints</th></tr>
+        </thead>
+        <tbody id="preview_body">
+        </tbody>
+    </table>
+</div>
+
 {% endblock content %}

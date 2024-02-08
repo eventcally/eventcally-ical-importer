@@ -116,3 +116,7 @@ button.dropdown-toggle {
   white-space: normal;
   text-align: inherit;
 }
+
+.table-preview td {
+  white-space: pre-line;
+}
