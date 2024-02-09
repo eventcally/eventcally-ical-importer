@@ -158,14 +158,16 @@ class IcalImporter:
                     "vevent": vevent.serialize(),
                     "standard": standard,
                     "event": event,
-                    "imported_event": {
-                        "id": imported_event.id,
-                        "eventcally_event_id": imported_event.eventcally_event_id,
-                        "vevent_uid": imported_event.vevent_uid,
-                    },
                     "hints": hints,
                     "errors": errors,
                 }
+
+                if imported_event:
+                    context["imported_event"] = {
+                        "id": imported_event.id,
+                        "eventcally_event_id": imported_event.eventcally_event_id,
+                        "vevent_uid": imported_event.vevent_uid,
+                    }
 
                 if event_diff:
                     context["diff"] = event_diff
