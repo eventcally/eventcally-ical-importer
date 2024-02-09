@@ -120,3 +120,7 @@ button.dropdown-toggle {
 .table-preview td {
   white-space: pre-line;
 }
+
+.json {
+  white-space: pre-line;
+}

@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for
 
 from project import app, current_user, db
-from project.models import Configuration, Run
+from project.models import Configuration, ImportedEvent, Run
 from project.utils import login_required
 
 
@@ -90,7 +90,26 @@ def configurations_update_js_reset(id):
         Configuration.user_id == current_user.id,
     ).first_or_404(id)
 
-    configuration.imported_events = None
+    configuration.imported_events = []
+    db.session.commit()
+
+    return ""
+
+
+@app.route("/configurations/<id>/update/js/delete_imported_event", methods=("DELETE",))
+@login_required
+def configurations_update_js_delete_imported_event(id):
+    Configuration.query.filter(
+        Configuration.id == id,
+        Configuration.user_id == current_user.id,
+    ).first_or_404(id)
+
+    imported_event = ImportedEvent.query.filter(
+        ImportedEvent.configuration_id == id,
+        ImportedEvent.id == request.args.get("imported_event_id"),
+    ).first_or_404(id)
+
+    db.session.delete(imported_event)
     db.session.commit()
 
     return ""

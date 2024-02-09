@@ -7,7 +7,7 @@ from jinja2 import BaseLoader, Environment
 from project import oauth
 from project.api_client import ApiClient
 from project.json_client import JsonClient, NotFoundError
-from project.models import Configuration, LogEntry, Run
+from project.models import Configuration, ImportedEvent, LogEntry, Run
 
 
 class IcalImporter:
@@ -30,11 +30,6 @@ class IcalImporter:
         self.configuration = configuration
         self.run = Run(status="success")
         template_env = Environment(loader=BaseLoader())
-        imported_events = (
-            dict(configuration.imported_events)
-            if configuration.imported_events
-            else dict()
-        )
 
         self.run.configuration_settings = {
             "url": configuration.url,
@@ -101,7 +96,14 @@ class IcalImporter:
                         )
 
                 # Check if event was imported before and did not change
-                imported_event = imported_events.get(vevent.uid)
+                imported_event = next(
+                    (
+                        i
+                        for i in self.configuration.imported_events
+                        if i.vevent_uid == vevent.uid
+                    ),
+                    None,
+                )
                 event_diff = dict(event)
                 if imported_event:
                     event_diff = self._get_event_diff(event, imported_event)
@@ -122,9 +124,11 @@ class IcalImporter:
                         event_id, is_inserted = self._send_event_to_eventcally(
                             event, imported_event, event_diff
                         )
-                        imported_event = dict(event)
-                        imported_event["event_id"] = event_id
-                        imported_events[vevent.uid] = imported_event
+                        imported_event = ImportedEvent()
+                        imported_event.vevent_uid = vevent.uid
+                        imported_event.eventcally_event_id = event_id
+                        imported_event.event = event
+                        configuration.imported_events.append(imported_event)
 
                         if is_inserted:
                             self.run.new_event_count = self.run.new_event_count + 1
@@ -154,7 +158,11 @@ class IcalImporter:
                     "vevent": vevent.serialize(),
                     "standard": standard,
                     "event": event,
-                    "imported_event": imported_event,
+                    "imported_event": {
+                        "id": imported_event.id,
+                        "eventcally_event_id": imported_event.eventcally_event_id,
+                        "vevent_uid": imported_event.vevent_uid,
+                    },
                     "hints": hints,
                     "errors": errors,
                 }
@@ -164,15 +172,18 @@ class IcalImporter:
                 self._log(message=message, type="vevent", context=context)
 
             # nicht mehr vorhandene events aus eventcally entfernen
-            for imported_uid, imported_event in list(imported_events.items()):
-                if imported_uid not in uids_to_import:
+            to_remove_from_imported_events = list()
+            for imported_event in self.configuration.imported_events:
+                if imported_event.vevent_uid not in uids_to_import:
                     errors = list()
 
                     if not self.dry:
                         try:
                             self._ensure_api_client()
-                            self.api_client.delete_event(imported_event.get("event_id"))
-                            del imported_events[imported_uid]
+                            self.api_client.delete_event(
+                                imported_event.eventcally_event_id
+                            )
+                            to_remove_from_imported_events.append(imported_event)
                         except Exception:
                             errors.append({"msg": traceback.format_exc()})
 
@@ -183,14 +194,21 @@ class IcalImporter:
                         self.run.deleted_event_count = self.run.deleted_event_count + 1
 
                     context = {
-                        "imported_event": imported_event,
+                        "imported_event": {
+                            "id": imported_event.id,
+                            "eventcally_event_id": imported_event.eventcally_event_id,
+                            "vevent_uid": imported_event.vevent_uid,
+                        },
                         "errors": errors,
                     }
-                    self._log(message=message, type="deleted", context=context)
+                    self._log(message="Event gelöscht", type="deleted", context=context)
+
+            if not self.dry:
+                for to_remove in to_remove_from_imported_events:
+                    self.configuration.imported_events.remove(to_remove)
 
         if not self.dry:
-            configuration.imported_events = imported_events
-            configuration.runs.append(self.run)
+            self.configuration.runs.append(self.run)
 
     def _ensure_api_client(self):
         if not self.api_client:
@@ -200,7 +218,7 @@ class IcalImporter:
             self.api_client.organization_id = self.configuration.organization_id
 
     def _send_event_to_eventcally(
-        self, event: dict, imported_event: dict, event_diff: dict
+        self, event: dict, imported_event: ImportedEvent, event_diff: dict
     ) -> int:
         self._ensure_api_client()
 
@@ -242,7 +260,7 @@ class IcalImporter:
             if "end" in event:
                 eventcally_event["date_definitions"][0]["end"] = event["end"]
 
-        event_id = imported_event.get("event_id") if imported_event else None
+        event_id = imported_event.eventcally_event_id if imported_event else None
         is_inserted = True
         if event_id:
             try:
@@ -255,11 +273,11 @@ class IcalImporter:
 
         return event_id, is_inserted
 
-    def _get_event_diff(self, event: dict, imported_event: dict) -> dict:
+    def _get_event_diff(self, event: dict, imported_event: ImportedEvent) -> dict:
         diff = dict()
 
         for key, value in event.items():
-            if value != imported_event.get(key):
+            if value != imported_event.event.get(key):
                 diff[key] = value
 
         return diff

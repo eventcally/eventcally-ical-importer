@@ -1,5 +1,6 @@
 import datetime
 
+from flask import current_app
 from sqlalchemy import (
     Column,
     DateTime,
@@ -82,10 +83,6 @@ class Configuration(Base):
         UnicodeText(), server_default='{{ standard["external_link"] }}'
     )
 
-    imported_events = Column(
-        JSONB
-    )  # gibt an, welche events nach eventcally importiert wurden dict(uid => event_json)
-
     runs = relationship(
         "Run",
         primaryjoin="Configuration.id == Run.configuration_id",
@@ -94,12 +91,33 @@ class Configuration(Base):
         order_by="Run.created_at.desc()",
     )
 
+    imported_events = relationship(
+        "ImportedEvent",
+        primaryjoin="Configuration.id == ImportedEvent.configuration_id",
+        backref=backref("configuration", lazy=True),
+        cascade="all, delete-orphan",
+        order_by="ImportedEvent.vevent_uid",
+    )
+
     def __init__(self, *args, **kwargs):
         for attr in Configuration._mapper_attrs:
             column = self.__table__.c[attr]
             setattr(self, attr, column.server_default.arg)
 
         super().__init__(*args, **kwargs)
+
+
+class ImportedEvent(Base):
+    __tablename__ = "importedevent"
+    id = Column(Integer, primary_key=True)
+    configuration_id = Column(Integer(), ForeignKey("configuration.id"), nullable=False)
+    vevent_uid = Column(Unicode(255))
+    eventcally_event_id = Column(Unicode(255))
+    event = Column(JSONB)
+
+    def get_eventcally_url(self):
+        base_url = current_app.config["EVENTCALLY_URL"]
+        return f"{base_url}/event/{self.eventcally_event_id}"
 
 
 class Run(Base):

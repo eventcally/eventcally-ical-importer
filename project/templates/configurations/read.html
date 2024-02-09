@@ -3,6 +3,32 @@
 {% block header %}
 <script>
 
+    function reset_cache() {
+      if (!window.confirm("Reset cache?")) {
+        return;
+      }
+
+      btn_loading($("#reset_btn"));
+      fetch("{{ url_for('configurations_update_js_reset', id=configuration.id) }}", {method:'post'})
+        .then(_ => {
+            btn_loaded($("#reset_btn"));
+            window.location.reload();
+        });
+    }
+
+    function delete_imported_event(button, imported_event_id) {
+      if (!window.confirm("Delete imported event?")) {
+        return;
+      }
+
+      btn_loading(button);
+
+      fetch("{{ url_for('configurations_update_js_delete_imported_event', id=configuration.id) }}?imported_event_id=" + imported_event_id, {method:'delete'})
+        .then(_ => {
+            $(button).closest('tr').remove();
+        });
+    }
+
     function run_import() {
         btn_loading($("#run_btn"));
       const form = document.getElementById("form");
@@ -38,29 +64,77 @@
 {% block content %}
 
 <h1>{{ _('Configuration') }} {{ configuration.title or configuration.id }}</h1>
-<p><a href="{{ url_for('configurations_update', id=configuration.id) }}" class="btn btn-secondary">{{ _('Update') }}</a></p>
-<p>{{ configuration.url }}</p>
+<div>
+    <p>{{ configuration.url }}</p>
+</div>
 
-<textarea class="form-control text-monospace" style="font-size: 0.7rem;" disabled rows="10">{{ configuration.imported_events|tojson(indent=2) }}</textarea>
+<div class="mt-2">
+    <a href="{{ url_for('configurations_update', id=configuration.id) }}" class="btn btn-secondary">{{ _('Edit configuration') }}</a>
+</div>
 
 <h2>Runs</h2>
 
-<button id="run_btn" class="btn btn-secondary" onclick="run_import()">Start run</button>
-
 <div class="table-responsive mt-4">
     <table class="table table-sm table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Run</th>
+                <th>Status</th>
+                <th>New</th>
+                <th>Updated</th>
+                <th>Deleted</th>
+                <th>Failures</th>
+            </tr>
+        </thead>
         <tbody>
             {% for run in configuration.runs %}
                 <tr>
-                    <td>{{ run.created_at|datetimeformat }}</td>
                     <td>
-                        <a href="{{ url_for('run', configuration_id=configuration.id, run_id=run.id) }}">{{ run.id }}</a>
+                        <a href="{{ url_for('run', configuration_id=configuration.id, run_id=run.id) }}">{{ run.created_at|datetimeformat }} Run {{ run.id }}</a>
                     </td>
                     <td>{{ run.status }}</td>
+                    <td>{{ run.new_event_count }}</td>
+                    <td>{{ run.updated_event_count }}</td>
+                    <td>{{ run.deleted_event_count }}</td>
+                    <td>{{ run.failure_event_count }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+</div>
+
+<div class="mt-2">
+    <button id="run_btn" class="btn btn-secondary" onclick="run_import()">Start run</button>
+</div>
+
+<h2>{{ _('Imported events') }}</h2>
+<div class="table-responsive mt-4">
+    <table class="table table-sm table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Vevent UID</th>
+                <th>EventCally Link</th>
+                <th>Data</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for imported_event in configuration.imported_events %}
+                <tr>
+                    <td>{{ imported_event.vevent_uid }}</td>
+                    <td>
+                        <a href="{{ imported_event.get_eventcally_url() }}" target="_blank" rel="noopener noreferrer">{{ imported_event.eventcally_event_id }}</a>
+                    </td>
+                    <td class="json">{{ imported_event.event|tojson(indent=2) }}</td>
+                    <td><button class="btn btn-outline-danger" onclick="delete_imported_event(this, {{ imported_event.id }})">Delete</button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="mt-2">
+    <button id="reset_btn" class="btn btn-danger" onclick="reset_cache()">Delete all imported events</button>
 </div>
 
 {% endblock content %}

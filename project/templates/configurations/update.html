@@ -9,16 +9,6 @@
         .then(_ => btn_loaded($("#save_btn")));
     }
 
-    function reset_cache() {
-      if (!window.confirm("Reset cache?")) {
-        return;
-      }
-
-      btn_loading($("#reset_btn"));
-      fetch("{{ url_for('configurations_update_js_reset', id=configuration.id) }}", {method:'post'})
-        .then(_ => btn_loaded($("#reset_btn")));
-    }
-
     function preview() {
       btn_loading($("#preview_btn"));
       const form = document.getElementById("form");
@@ -104,7 +94,6 @@
     <button id="close_btn" class="btn btn-outline-secondary" onclick="finish()">Close</button>
   </div>
   <div class="mt-4">
-    <button id="reset_btn" class="btn btn-danger" onclick="reset_cache()">Reset cache</button>
     <button id="delete_btn" class="btn btn-danger" onclick="delete_configuration()">Delete configuration</button>
   </div>
 
