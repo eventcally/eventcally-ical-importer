@@ -75,6 +75,33 @@ class ApiClient:
         self.update_place(place_id, data)
         return place_id
 
+    def find_event_id_by_tag(self, tag: str) -> int:
+        events = self.find_events_by_tag(tag)
+
+        if len(events) != 1:
+            return None
+
+        event = events[0]
+        return event["id"]
+
+    def find_events_by_tag(self, tag: str) -> int:
+        events = list()
+        page = 1
+
+        while True:
+            response = self.json_client.get(
+                f"/organizations/{self.organization_id}/events/search?tag={tag}&per_page=50&page={page}"
+            )
+            pagination = response.json()
+            events.extend(pagination["items"])
+
+            if pagination["has_next"]:
+                page += 1
+            else:
+                break
+
+        return events
+
     def insert_event(self, data: dict) -> int:
         app.logger.debug(f"Insert event {data['name']}")
 

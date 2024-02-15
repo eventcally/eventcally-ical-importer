@@ -1,4 +1,5 @@
 import datetime
+import uuid
 
 from flask import current_app
 from sqlalchemy import (
@@ -52,6 +53,10 @@ class User(Base):
         )
 
 
+def generate_uuid():
+    return str(uuid.uuid4())
+
+
 class Configuration(Base):
     __tablename__ = "configuration"
     _mapper_attrs = [
@@ -69,6 +74,7 @@ class Configuration(Base):
     title = Column(Unicode(255))
     url = Column(Unicode(255))
     organization_id = Column(Unicode(255))
+    identifier_tag = Column(String, default=generate_uuid)
 
     name = Column(UnicodeText(), server_default='{{ standard["name"] }}')
     organizer_name = Column(

@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "Flask",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "module": "flask",
       "env": {
@@ -18,7 +18,7 @@
     },
     {
       "name": "Celery worker",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "module": "celery",
       "args": [
@@ -33,7 +33,7 @@
     },
     {
       "name": "Celery beat",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "module": "celery",
       "args": ["-A", "project.celery", "beat", "--loglevel=debug"],

@@ -80,6 +80,7 @@
     <div>
       {{ render_field('title', 'input') }}
       {{ render_field('organization_id', 'input') }}
+      {{ render_field('identifier_tag', 'input') }}
       {{ render_field('url', 'input', input_type='url') }}
 
       {% for mapper_attr in configuration._mapper_attrs %}

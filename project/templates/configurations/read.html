@@ -3,32 +3,6 @@
 {% block header %}
 <script>
 
-    function reset_cache() {
-      if (!window.confirm("Reset cache?")) {
-        return;
-      }
-
-      btn_loading($("#reset_btn"));
-      fetch("{{ url_for('configurations_update_js_reset', id=configuration.id) }}", {method:'post'})
-        .then(_ => {
-            btn_loaded($("#reset_btn"));
-            window.location.reload();
-        });
-    }
-
-    function delete_imported_event(button, imported_event_id) {
-      if (!window.confirm("Delete imported event?")) {
-        return;
-      }
-
-      btn_loading(button);
-
-      fetch("{{ url_for('configurations_update_js_delete_imported_event', id=configuration.id) }}?imported_event_id=" + imported_event_id, {method:'delete'})
-        .then(_ => {
-            $(button).closest('tr').remove();
-        });
-    }
-
     function run_import() {
         btn_loading($("#run_btn"));
       const form = document.getElementById("form");
@@ -115,7 +89,6 @@
                 <th>Vevent UID</th>
                 <th>EventCally Link</th>
                 <th>Data</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -126,15 +99,10 @@
                         <a href="{{ imported_event.get_eventcally_url() }}" target="_blank" rel="noopener noreferrer">{{ imported_event.eventcally_event_id }}</a>
                     </td>
                     <td class="json">{{ imported_event.event|tojson(indent=2) }}</td>
-                    <td><button class="btn btn-outline-danger" onclick="delete_imported_event(this, {{ imported_event.id }})">Delete</button></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-</div>
-
-<div class="mt-2">
-    <button id="reset_btn" class="btn btn-danger" onclick="reset_cache()">Delete all imported events</button>
 </div>
 
 {% endblock content %}

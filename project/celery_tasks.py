@@ -6,7 +6,7 @@ from project import celery
 
 @celery.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
-    sender.add_periodic_task(crontab(minute=0, hour="*/8"), schedule_runs_task)
+    sender.add_periodic_task(crontab(minute=0, hour="*/4"), schedule_runs_task)
     sender.add_periodic_task(crontab(hour=0, minute=30), delete_outdated_runs_task)
 
 
@@ -57,5 +57,9 @@ def delete_outdated_runs_task():
     from project.models import Run
 
     due = datetime.datetime.utcnow() - datetime.timedelta(days=3)
-    Run.query.filter(Run.created_at < due).delete()
+    runs = Run.query.filter(Run.created_at < due).all()
+
+    for run in runs:
+        db.session.delete(run)
+
     db.session.commit()
