@@ -7,10 +7,13 @@
         btn_loading($("#run_btn"));
       const form = document.getElementById("form");
 
-      fetch("{{ url_for('configurations_update_js_import', id=configuration.id) }}", {method:'post'})
-        .then(response => response.json())
-        .then(task => {
-            poll(task.id);
+      $.ajax({
+            url: "{{ url_for('configurations_update_js_import', id=configuration.id) }}",
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                poll(data.id);
+            }
         });
     }
 

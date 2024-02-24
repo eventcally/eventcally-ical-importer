@@ -8,3 +8,11 @@ function btn_loaded(elem) {
   $(elem).prop("disabled", false);
   $(elem).html($(elem).attr("data-original-text"));
 }
+
+$.ajaxSetup({
+  statusCode: {
+    401: function () {
+      location.replace("/login");
+    },
+  },
+});

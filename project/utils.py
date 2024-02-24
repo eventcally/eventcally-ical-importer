@@ -1,7 +1,8 @@
 import os
 from functools import wraps
 
-from flask import Flask, g, redirect, session, url_for
+from authlib.integrations.base_client.errors import OAuthError
+from flask import Flask, abort, g, redirect, session, url_for
 
 
 def get_user():
@@ -34,6 +35,21 @@ def login_required(f):
 
         if not current_user:
             return redirect(url_for("login"))
+        return f(*args, **kwargs)
+
+    return wrapper
+
+
+def token_check_required(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        from project import oauth
+
+        try:
+            oauth.eventcally.userinfo()
+        except OAuthError:
+            abort(401)
+
         return f(*args, **kwargs)
 
     return wrapper
