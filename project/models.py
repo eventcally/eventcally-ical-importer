@@ -69,6 +69,7 @@ class Configuration(Base):
         "allday",
         "external_link",
         "tags",
+        "categories",
     ]
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer(), ForeignKey("user.id"), nullable=False)
@@ -89,6 +90,7 @@ class Configuration(Base):
     external_link = Column(
         UnicodeText(), server_default='{{ standard["external_link"] }}'
     )
+    categories = Column(UnicodeText(), server_default='{{ standard["categories"] }}')
     tags = Column(UnicodeText(), server_default='{{ standard["tags"] }}')
 
     runs = relationship(

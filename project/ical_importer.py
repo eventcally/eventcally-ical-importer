@@ -23,6 +23,7 @@ class IcalImporter:
         self.configuration = None
         self.template_env = Environment(loader=BaseLoader())
         self.uids_to_import = None
+        self.categories = None
 
         self.vevent = None
         self.vevent_standard_mapping = None
@@ -46,6 +47,7 @@ class IcalImporter:
 
         if not self.dry:
             self._load_events_from_eventcally()
+            self._load_categories_from_eventcally()
 
         if not self.calendar:
             self._load_calendar_from_url()
@@ -69,6 +71,10 @@ class IcalImporter:
 
         if not self.dry:
             self._delete_non_existing_events_from_eventcally()
+
+    def _load_categories_from_eventcally(self):
+        category_list = self.api_client.get_categories()
+        self.categories = {c["name"]: {"id": c["id"]} for c in category_list}
 
     def _load_calendar_from_url(self):
         try:
@@ -110,6 +116,7 @@ class IcalImporter:
         standard["allday"] = self.vevent.all_day
         standard["external_link"] = ""
         standard["tags"] = ""
+        standard["categories"] = ""
 
         self.vevent_standard_mapping = standard
 
@@ -241,6 +248,15 @@ class IcalImporter:
         eventcally_event["name"] = self.vevent_final_mapping["name"]
         eventcally_event["description"] = self.vevent_final_mapping["description"]
         eventcally_event["external_link"] = self.vevent_final_mapping["external_link"]
+
+        category_names_string = self.vevent_final_mapping["categories"]
+        if category_names_string:
+            category_names = category_names_string.split(",")
+            eventcally_categories = [
+                self.categories[k] for k in category_names if k in self.categories
+            ]
+            if eventcally_categories:
+                eventcally_event["categories"] = eventcally_categories
 
         additional_tags = self.vevent_final_mapping["tags"]
         if additional_tags:
