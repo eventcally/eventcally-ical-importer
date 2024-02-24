@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, url_for
 
 from project import app, current_user, db
 from project.models import Configuration, Run
-from project.utils import login_required
+from project.utils import login_required, token_check_required
 
 
 @app.route("/configurations")
@@ -126,6 +126,7 @@ def configurations_update_js_preview(id):
 
 @app.route("/configurations/<id>/update/js/import", methods=["GET", "POST"])
 @login_required
+@token_check_required
 def configurations_update_js_import(id):
     from project.celery import get_celery_poll_result
     from project.celery_tasks import perform_run_task

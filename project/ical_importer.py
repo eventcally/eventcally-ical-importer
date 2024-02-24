@@ -34,6 +34,7 @@ class IcalImporter:
     def perform(self, configuration: Configuration):
         try:
             self.configuration = configuration
+            self._create_run()
             self._perform()
         except Exception as e:
             self._log(f"Error: {str(e)} {traceback.format_exc()}")
@@ -41,7 +42,6 @@ class IcalImporter:
 
     def _perform(self):
         self._ensure_api_client()
-        self._create_run()
         self.uids_to_import = set()
 
         if not self.dry:
@@ -69,7 +69,6 @@ class IcalImporter:
 
         if not self.dry:
             self._delete_non_existing_events_from_eventcally()
-            self.configuration.runs.append(self.run)
 
     def _load_calendar_from_url(self):
         try:
@@ -97,6 +96,9 @@ class IcalImporter:
         for attr in Configuration._mapper_attrs:
             self.run.configuration_settings[attr] = getattr(self.configuration, attr)
 
+        if not self.dry:
+            self.configuration.runs.append(self.run)
+
     def _create_standard_mapping(self):
         standard = dict()
         standard["place_name"] = self.vevent.location or ""
@@ -107,6 +109,7 @@ class IcalImporter:
         standard["end"] = self.vevent.end.datetime if self.vevent.end else None
         standard["allday"] = self.vevent.all_day
         standard["external_link"] = ""
+        standard["tags"] = ""
 
         self.vevent_standard_mapping = standard
 
@@ -238,6 +241,10 @@ class IcalImporter:
         eventcally_event["name"] = self.vevent_final_mapping["name"]
         eventcally_event["description"] = self.vevent_final_mapping["description"]
         eventcally_event["external_link"] = self.vevent_final_mapping["external_link"]
+
+        additional_tags = self.vevent_final_mapping["tags"]
+        if additional_tags:
+            eventcally_event["tags"] += f",{additional_tags}"
 
         eventcally_event["date_definitions"] = [
             {
