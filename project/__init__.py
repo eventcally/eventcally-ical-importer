@@ -137,7 +137,7 @@ def fetch_eventcally_token():
     return current_user.to_token() if current_user else None
 
 
-def update_token(name, token, refresh_token=None, access_token=None):
+def update_token(token, refresh_token=None, access_token=None):
     if refresh_token:
         user = User.query.filter(User.refresh_token == refresh_token).first()
     elif access_token:
