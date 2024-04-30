@@ -115,6 +115,7 @@ class IcalImporter:
         standard["end"] = self.vevent.end.datetime if self.vevent.end else None
         standard["allday"] = self.vevent.all_day
         standard["external_link"] = ""
+        standard["photo_url"] = ""
         standard["tags"] = ""
         standard["categories"] = ""
 
@@ -273,6 +274,10 @@ class IcalImporter:
             eventcally_event["date_definitions"][0]["end"] = self.vevent_final_mapping[
                 "end"
             ]
+
+        photo_url = self.vevent_final_mapping["photo_url"]
+        if photo_url:
+            eventcally_event["photo"] = {"image_url": photo_url}
 
         self.vevent_eventcally_event = eventcally_event
 

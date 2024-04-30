@@ -70,6 +70,7 @@ class Configuration(Base):
         "external_link",
         "tags",
         "categories",
+        "photo_url",
     ]
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer(), ForeignKey("user.id"), nullable=False)
@@ -90,6 +91,7 @@ class Configuration(Base):
     external_link = Column(
         UnicodeText(), server_default='{{ standard["external_link"] }}'
     )
+    photo_url = Column(UnicodeText(), server_default='{{ standard["photo_url"] }}')
     categories = Column(UnicodeText(), server_default='{{ standard["categories"] }}')
     tags = Column(UnicodeText(), server_default='{{ standard["tags"] }}')
 
