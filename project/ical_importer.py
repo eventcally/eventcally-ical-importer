@@ -1,3 +1,4 @@
+import datetime
 import traceback
 
 import requests
@@ -111,13 +112,28 @@ class IcalImporter:
         standard["organizer_name"] = self.vevent.organizer or self.calendar_name or ""
         standard["name"] = self.vevent.name or ""
         standard["description"] = self.vevent.description or ""
-        standard["start"] = self.vevent.begin.datetime
-        standard["end"] = self.vevent.end.datetime if self.vevent.end else None
         standard["allday"] = self.vevent.all_day
-        standard["external_link"] = ""
+        standard["external_link"] = self.vevent.url or ""
         standard["photo_url"] = ""
         standard["tags"] = ""
         standard["categories"] = ""
+
+        standard["start"] = (
+            self.vevent.begin.datetime.date()
+            if self.vevent.all_day
+            else self.vevent.begin.datetime
+        )
+
+        end = ""
+        if self.vevent.end:
+            end = self.vevent.end.datetime
+            if self.vevent.all_day:
+                end -= datetime.timedelta(days=1)
+                end = end.date()
+                if end == standard["start"]:
+                    end = ""
+
+        standard["end"] = end
 
         self.vevent_standard_mapping = standard
 
@@ -248,7 +264,11 @@ class IcalImporter:
         eventcally_event["organizer"] = {"id": self.vevent_organizer_id}
         eventcally_event["name"] = self.vevent_final_mapping["name"]
         eventcally_event["description"] = self.vevent_final_mapping["description"]
-        eventcally_event["external_link"] = self.vevent_final_mapping["external_link"]
+
+        if self.vevent_final_mapping["external_link"]:
+            eventcally_event["external_link"] = self.vevent_final_mapping[
+                "external_link"
+            ]
 
         category_names_string = self.vevent_final_mapping["categories"]
         if category_names_string:
@@ -270,10 +290,9 @@ class IcalImporter:
             }
         ]
 
-        if "end" in self.vevent_final_mapping:
-            eventcally_event["date_definitions"][0]["end"] = self.vevent_final_mapping[
-                "end"
-            ]
+        end = self.vevent_final_mapping["end"]
+        if end:
+            eventcally_event["date_definitions"][0]["end"] = end
 
         photo_url = self.vevent_final_mapping["photo_url"]
         if photo_url:
