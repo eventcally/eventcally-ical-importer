@@ -115,6 +115,7 @@ class IcalImporter:
         standard["allday"] = self.vevent.all_day
         standard["external_link"] = self.vevent.url or ""
         standard["photo_url"] = ""
+        standard["photo_copyright_text"] = ""
         standard["tags"] = ""
         standard["categories"] = ""
 
@@ -213,6 +214,17 @@ class IcalImporter:
                     }
                 )
 
+        photo_url = self.vevent_final_mapping["photo_url"]
+        photo_copyright_text = self.vevent_final_mapping["photo_copyright_text"]
+
+        if photo_url and not photo_copyright_text:
+            self.vevent_hints.append(
+                {
+                    "key": "photo_copyright_text",
+                    "msg": "Photo copyright text is required",
+                }
+            )
+
     def _find_imported_event_for_vevent(self, vevent) -> ImportedEvent:
         return next(
             (
@@ -295,8 +307,13 @@ class IcalImporter:
             eventcally_event["date_definitions"][0]["end"] = end
 
         photo_url = self.vevent_final_mapping["photo_url"]
-        if photo_url:
-            eventcally_event["photo"] = {"image_url": photo_url}
+        photo_copyright_text = self.vevent_final_mapping["photo_copyright_text"]
+
+        if photo_url and photo_copyright_text:
+            eventcally_event["photo"] = {
+                "image_url": photo_url,
+                "copyright_text": photo_copyright_text,
+            }
 
         self.vevent_eventcally_event = eventcally_event
 
