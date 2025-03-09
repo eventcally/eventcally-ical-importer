@@ -56,7 +56,7 @@ def delete_outdated_runs_task():
     from project import db
     from project.models import Run
 
-    due = datetime.datetime.utcnow() - datetime.timedelta(days=3)
+    due = datetime.datetime.utcnow() - datetime.timedelta(days=15)
     runs = Run.query.filter(Run.created_at < due).all()
 
     for run in runs:

@@ -1,5 +1,7 @@
 from typing import Any
 
+from authlib.common.urls import urlparse
+from authlib.integrations.requests_client import OAuth2Session
 from requests import Response
 
 from project import app
@@ -19,12 +21,33 @@ class NotFoundError(ValueError):
 
 
 class JsonClient:
-    def __init__(self, oauth_client, token):
+    def __init__(self, oauth_client, user):
         self.oauth_client = oauth_client
-        self.token = token
+        self.user = user
+        self.token = self.user.to_token()
+
+        metadata = oauth_client.load_server_metadata()
+        client_kwargs = oauth_client.client_kwargs
+        client_kwargs.update(metadata)
+
+        self.session = OAuth2Session(
+            oauth_client.client_id,
+            oauth_client.client_secret,
+            token=self.token,
+            update_token=self._update_token,
+            **client_kwargs,
+        )
+
+    def _update_token(self, token, refresh_token=None, access_token=None):
+        from project import db
+
+        self.user.access_token = token["access_token"]
+        self.user.refresh_token = token.get("refresh_token")
+        self.user.expires_at = token["expires_at"]
+        db.session.commit()
 
     def complete_url(self, url: str) -> str:
-        return "/api/v1" + url
+        return urlparse.urljoin(self.oauth_client.api_base_url, "/api/v1" + url)
 
     def status_code_or_raise(self, response: Response, code: int):
         app.logger.debug(f"Response: {response.status_code} {response.content}")
@@ -44,7 +67,7 @@ class JsonClient:
     def get(self, url: str) -> Response:
         url = self.complete_url(url)
         app.logger.debug(f"GET {url}")
-        response = self.oauth_client.get(url, token=self.token)
+        response = self.session.get(url)
         self.status_code_or_raise(response, 200)
         return response
 
@@ -52,11 +75,10 @@ class JsonClient:
         url = self.complete_url(url)
         body = app.json.dumps(data)
         app.logger.debug(f"POST {url}\n{body}")
-        response = self.oauth_client.post(
+        response = self.session.post(
             url,
             data=body,
             headers={"Content-Type": "application/json"},
-            token=self.token,
         )
         self.status_code_or_raise(response, 201)
         return response
@@ -65,11 +87,10 @@ class JsonClient:
         url = self.complete_url(url)
         body = app.json.dumps(data)
         app.logger.debug(f"PUT {url}\n{body}")
-        response = self.oauth_client.put(
+        response = self.session.put(
             url,
             data=body,
             headers={"Content-Type": "application/json"},
-            token=self.token,
         )
         self.status_code_or_raise(response, 204)
         return response
@@ -78,11 +99,10 @@ class JsonClient:
         url = self.complete_url(url)
         body = app.json.dumps(data)
         app.logger.debug(f"PATCH {url}\n{body}")
-        response = self.oauth_client.patch(
+        response = self.session.patch(
             url,
             data=body,
             headers={"Content-Type": "application/json"},
-            token=self.token,
         )
         self.status_code_or_raise(response, 204)
         return response
@@ -90,6 +110,6 @@ class JsonClient:
     def delete(self, url: str) -> Response:
         url = self.complete_url(url)
         app.logger.debug(f"DELETE {url}")
-        response = self.oauth_client.delete(url, token=self.token)
+        response = self.session.delete(url)
         self.status_code_or_raise(response, 204)
         return response

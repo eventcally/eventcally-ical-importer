@@ -42,6 +42,11 @@ class IcalImporter:
             self._log(f"Error: {str(e)} {traceback.format_exc()}")
             self.run.status = "failure"
 
+            if not self.dry:
+                from project import app
+
+                app.logger.error("perform", exc_info=e)
+
     def _perform(self):
         self._ensure_api_client()
         self.uids_to_import = set()
@@ -320,7 +325,7 @@ class IcalImporter:
     def _ensure_api_client(self):
         if not self.api_client:
             self.api_client = ApiClient(
-                JsonClient(oauth.eventcally, self.configuration.user.to_token())
+                JsonClient(oauth.eventcally, self.configuration.user)
             )
             self.api_client.organization_id = self.configuration.organization_id
 
