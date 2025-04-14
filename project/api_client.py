@@ -85,12 +85,18 @@ class ApiClient:
         return event["id"]
 
     def find_events_by_tag(self, tag: str) -> int:
+        return self._find_events_by_tag_field("tag", tag)
+
+    def find_events_by_internal_tag(self, tag: str) -> int:
+        return self._find_events_by_tag_field("internal_tag", tag)
+
+    def _find_events_by_tag_field(self, field: str, tag: str) -> int:
         events = list()
         page = 1
 
         while True:
             response = self.json_client.get(
-                f"/organizations/{self.organization_id}/events/search?tag={tag}&per_page=50&page={page}"
+                f"/organizations/{self.organization_id}/events/search?{field}={tag}&per_page=50&page={page}"
             )
             pagination = response.json()
             events.extend(pagination["items"])

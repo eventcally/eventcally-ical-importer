@@ -153,6 +153,18 @@ class IcalImporter:
         self.vevent_is_new = True
         self.vevent_is_unchanged = False
 
+        if self.vevent_imported_event:
+            self.eventcally_event = next(
+                (
+                    e
+                    for e in self.eventcally_events
+                    if str(e["id"]) == self.vevent_imported_event.eventcally_event_id
+                ),
+                None,
+            )
+        else:
+            self.eventcally_event = None
+
     def _end_vevent(self):
         if self.vevent_errors:
             self.run.status = "failure"
@@ -276,7 +288,8 @@ class IcalImporter:
 
     def _create_eventcally_event(self):
         eventcally_event = dict()
-        eventcally_event["tags"] = self._get_event_tags()
+
+        eventcally_event["internal_tags"] = self._get_event_tags()
         eventcally_event["place"] = {"id": self.vevent_place_id}
         eventcally_event["organizer"] = {"id": self.vevent_organizer_id}
         eventcally_event["name"] = self.vevent_final_mapping["name"]
@@ -297,8 +310,7 @@ class IcalImporter:
                 eventcally_event["categories"] = eventcally_categories
 
         additional_tags = self.vevent_final_mapping["tags"]
-        if additional_tags:
-            eventcally_event["tags"] += f",{additional_tags}"
+        eventcally_event["tags"] = additional_tags if additional_tags else ""
 
         eventcally_event["date_definitions"] = [
             {
@@ -332,13 +344,19 @@ class IcalImporter:
     def _load_events_from_eventcally(self):
         tag = self._get_configuration_event_tag()
         events = self.api_client.find_events_by_tag(tag)
+        events.extend(self.api_client.find_events_by_internal_tag(tag))
 
         to_remove_from_imported_events = list(self.configuration.imported_events)
         self.eventcally_places = []
         self.eventcally_organizers = []
+        self.eventcally_events = []
 
         for event in events:
             tags = event["tags"].split(",")
+
+            if event["internal_tags"]:
+                tags.extend(event["internal_tags"].split(","))
+
             vevent_tag = next(
                 (tag for tag in tags if tag.startswith(IcalImporter.tag_vevent_prefix)),
                 None,
@@ -367,6 +385,7 @@ class IcalImporter:
 
             self.eventcally_places.append(dict(event["place"]))
             self.eventcally_organizers.append(dict(event["organizer"]))
+            self.eventcally_events.append(dict(event))
 
         for to_remove in to_remove_from_imported_events:
             self.configuration.imported_events.remove(to_remove)
@@ -452,6 +471,13 @@ class IcalImporter:
     def _check_event_for_changes(self):
         self._create_event_diff()
         self.vevent_is_unchanged = not self.vevent_diff
+
+        if (
+            self.vevent_is_unchanged
+            and self.eventcally_event
+            and self.eventcally_event.get("internal_tags") != self._get_event_tags()
+        ):
+            self.vevent_is_unchanged = False
 
         if self.vevent_is_unchanged:
             self.vevent_hints.append(
