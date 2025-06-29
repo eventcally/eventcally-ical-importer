@@ -159,7 +159,9 @@ oauth.register(
     client_secret=os.getenv("EVENTCALLY_CLIENT_SECRET"),
     api_base_url=app.config["EVENTCALLY_URL"],
     server_metadata_url=f"{app.config['EVENTCALLY_URL']}/.well-known/openid-configuration",
-    client_kwargs={"scope": "profile event:write organizer:write place:write"},
+    client_kwargs={
+        "scope": "profile organization.events:read organization.events:write organization.event_organizers:read organization.event_organizers:write organization.event_places:read organization.event_places:write"
+    },
     fetch_token=fetch_eventcally_token,
     update_token=update_token,
 )

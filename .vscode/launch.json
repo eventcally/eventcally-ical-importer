@@ -14,7 +14,9 @@
       },
       "args": ["run", "--no-debugger"],
       "justMyCode": false,
-      "jinja": true
+      "jinja": true,
+      "console": "integratedTerminal",
+      "consoleName": "Flask"
     },
     {
       "name": "Celery worker",
@@ -29,7 +31,8 @@
         "--concurrency=1"
       ],
       "justMyCode": false,
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "consoleName": "Celery worker"
     },
     {
       "name": "Celery beat",
@@ -38,7 +41,8 @@
       "module": "celery",
       "args": ["-A", "project.celery", "beat", "--loglevel=debug"],
       "justMyCode": false,
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "consoleName": "Celery beat"
     }
   ],
   "compounds": [
