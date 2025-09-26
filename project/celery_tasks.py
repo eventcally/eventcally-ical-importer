@@ -1,3 +1,5 @@
+import datetime
+
 from celery import group
 from celery.schedules import crontab
 
@@ -6,8 +8,10 @@ from project import celery
 
 @celery.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
+    sender.add_periodic_task(datetime.timedelta(minutes=5), load_app_installations)
     sender.add_periodic_task(crontab(minute=0, hour="*/4"), schedule_runs_task)
     sender.add_periodic_task(crontab(hour=0, minute=30), delete_outdated_runs_task)
+    load_app_installations.delay()
 
 
 @celery.task(
@@ -63,3 +67,13 @@ def delete_outdated_runs_task():
         db.session.delete(run)
 
     db.session.commit()
+
+
+@celery.task(
+    acks_late=True,
+    reject_on_worker_lost=True,
+)
+def load_app_installations():
+    from project.utils import load_app_installations
+
+    load_app_installations()

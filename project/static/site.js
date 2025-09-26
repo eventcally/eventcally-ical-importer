@@ -10,9 +10,18 @@ function btn_loaded(elem) {
 }
 
 $.ajaxSetup({
+  headers: {
+    "X-Requested-With": "Ajax",
+  },
   statusCode: {
     401: function () {
       location.replace("/login");
     },
+  },
+  error: function (xhr) {
+    console.error("AJAX error:", xhr);
+    alert(
+      "An error occurred: " + (xhr.responseJSON?.message || xhr.statusText)
+    );
   },
 });

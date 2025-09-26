@@ -1,21 +1,40 @@
 from flask import redirect, render_template, request, url_for
 
 from project import app, current_user, db
-from project.models import Configuration, Run
-from project.utils import login_required, token_check_required
+from project.models import (
+    AppInstallation,
+    Configuration,
+    Run,
+    User,
+    UserAppInstallations,
+)
+from project.utils import login_required
+
+
+def get_configurations_query():
+    return Configuration.query.join(
+        AppInstallation, AppInstallation.id == Configuration.app_installation_id
+    ).filter(AppInstallation.users.any(User.id == current_user.id))
 
 
 @app.route("/configurations")
 @login_required
 def configurations():
-    return render_template("configurations/index.html")
+    configurations = get_configurations_query().all()
+    return render_template("configurations/index.html", configurations=configurations)
 
 
-@app.route("/configurations/create", methods=("GET", "POST"))
+@app.route("/configurations/create/<app_installation_id>", methods=("GET", "POST"))
 @login_required
-def configurations_create():
+def configurations_create(
+    app_installation_id,
+):
+    UserAppInstallations.query.filter(
+        UserAppInstallations.app_installation_id == app_installation_id
+    ).filter(UserAppInstallations.user_id == current_user.id).first_or_404()
+
     configuration = Configuration()
-    configuration.user_id = current_user.id
+    configuration.app_installation_id = app_installation_id
 
     db.session.add(configuration)
     db.session.commit()
@@ -26,10 +45,9 @@ def configurations_create():
 @app.route("/configurations/<id>")
 @login_required
 def configuration(id):
-    configuration = Configuration.query.filter(
-        Configuration.id == id,
-        Configuration.user_id == current_user.id,
-    ).first_or_404(id)
+    configuration = (
+        get_configurations_query().filter(Configuration.id == id).first_or_404()
+    )
 
     return render_template(
         "configurations/read.html",
@@ -42,10 +60,11 @@ def configuration(id):
 def run(configuration_id, run_id):
     run = Run.query.get_or_404(run_id)
 
-    configuration = Configuration.query.filter(
-        Configuration.id == configuration_id,
-        Configuration.user_id == current_user.id,
-    ).first_or_404(id)
+    configuration = (
+        get_configurations_query()
+        .filter(Configuration.id == configuration_id)
+        .first_or_404()
+    )
 
     return render_template(
         "runs/read.html",
@@ -57,10 +76,9 @@ def run(configuration_id, run_id):
 @app.route("/configurations/<id>/update")
 @login_required
 def configurations_update(id):
-    configuration = Configuration.query.filter(
-        Configuration.id == id,
-        Configuration.user_id == current_user.id,
-    ).first_or_404(id)
+    configuration = (
+        get_configurations_query().filter(Configuration.id == id).first_or_404()
+    )
 
     return render_template(
         "configurations/update.html",
@@ -71,10 +89,9 @@ def configurations_update(id):
 @app.route("/configurations/<id>/update/js/save", methods=("PUT",))
 @login_required
 def configurations_update_js_save(id):
-    configuration = Configuration.query.filter(
-        Configuration.id == id,
-        Configuration.user_id == current_user.id,
-    ).first_or_404(id)
+    configuration = (
+        get_configurations_query().filter(Configuration.id == id).first_or_404()
+    )
 
     configuration.update_with_kwargs(**request.form)
     db.session.commit()
@@ -85,10 +102,9 @@ def configurations_update_js_save(id):
 @app.route("/configurations/<id>/update/js/delete", methods=("DELETE",))
 @login_required
 def configurations_update_js_delete(id):
-    configuration = Configuration.query.filter(
-        Configuration.id == id,
-        Configuration.user_id == current_user.id,
-    ).first_or_404(id)
+    configuration = (
+        get_configurations_query().filter(Configuration.id == id).first_or_404()
+    )
 
     db.session.delete(configuration)
     db.session.commit()
@@ -102,17 +118,15 @@ def configurations_update_js_preview(id):
     from project.api import RunSchema
     from project.ical_importer import IcalImporter
 
-    configuration = Configuration.query.filter(
-        Configuration.id == id,
-        Configuration.user_id == current_user.id,
-    ).first_or_404(id)
+    configuration = (
+        get_configurations_query().filter(Configuration.id == id).first_or_404()
+    )
 
     for attr in Configuration._mapper_attrs:
         if attr in request.form:
             value = request.form.get(attr)
             setattr(configuration, attr, value)
 
-    configuration.organization_id = request.form.get("organization_id")
     configuration.url = request.form.get("url")
 
     importer = IcalImporter()
@@ -126,15 +140,13 @@ def configurations_update_js_preview(id):
 
 @app.route("/configurations/<id>/update/js/import", methods=["GET", "POST"])
 @login_required
-@token_check_required
 def configurations_update_js_import(id):
     from project.celery import get_celery_poll_result
     from project.celery_tasks import perform_run_task
 
-    configuration = Configuration.query.filter(
-        Configuration.id == id,
-        Configuration.user_id == current_user.id,
-    ).first_or_404(id)
+    configuration = (
+        get_configurations_query().filter(Configuration.id == id).first_or_404()
+    )
 
     if "poll" in request.args:
         return get_celery_poll_result(request.args["poll"])

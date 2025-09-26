@@ -2,9 +2,11 @@ from typing import Any
 
 from authlib.common.urls import urlparse
 from authlib.integrations.requests_client import OAuth2Session
+from authlib.oauth2.rfc7523.jwt_bearer import JWT_BEARER_GRANT_TYPE
 from requests import Response
 
 from project import app
+from project.oauth_access import CustomPrivateKeyJWT
 
 
 class UnprocessableEntityError(ValueError):
@@ -21,24 +23,56 @@ class NotFoundError(ValueError):
 
 
 class JsonClient:
-    def __init__(self, oauth_client, user):
+    def __init__(self, oauth_client, **kwargs):
         self.oauth_client = oauth_client
-        self.user = user
-        self.token = self.user.to_token()
+        self.oauth_private_key = kwargs.get("oauth_private_key")
+        self.oauth_kid = kwargs.get("oauth_kid")
+        self.app_id = kwargs.get("app_id")
+        self.app_installation_id = kwargs.get("app_installation_id")
+        self.user = kwargs.get("user")
+        self.session = None
 
-        metadata = oauth_client.load_server_metadata()
-        client_kwargs = oauth_client.client_kwargs
+    def _ensure_session(self):
+        if self.session and self.session.token:
+            return
+
+        metadata = self.oauth_client.load_server_metadata()
+        client_kwargs = self.oauth_client.client_kwargs
         client_kwargs.update(metadata)
 
-        self.session = OAuth2Session(
-            oauth_client.client_id,
-            oauth_client.client_secret,
-            token=self.token,
-            update_token=self._update_token,
-            **client_kwargs,
-        )
+        if self.user:
+            self.session = OAuth2Session(
+                self.oauth_client.client_id,
+                self.oauth_client.client_secret,
+                token=self.user.to_token(),
+                update_token=self._update_token,
+                **client_kwargs,
+            )
+        else:
+            sub = (
+                f"app_installation:{self.app_installation_id}"
+                if self.app_installation_id
+                else f"app:{self.app_id}"
+            )
+            token_endpoint = metadata["token_endpoint"]
+            claims = {
+                "iss": self.oauth_client.client_id,
+                "sub": sub,
+            }
+            headers = {"kid": self.oauth_kid}
+            private_key_jwt = CustomPrivateKeyJWT(token_endpoint, claims, headers)
+            self.session = OAuth2Session(
+                self.oauth_client.client_id,
+                self.oauth_private_key,
+                token_endpoint_auth_method=private_key_jwt,
+                **client_kwargs,
+            )
+            self.session.fetch_token(token_endpoint, grant_type=JWT_BEARER_GRANT_TYPE)
 
     def _update_token(self, token, refresh_token=None, access_token=None):
+        if not self.user:
+            return
+
         from project import db
 
         self.user.access_token = token["access_token"]
@@ -65,6 +99,7 @@ class JsonClient:
         raise ValueError(msg, response)
 
     def get(self, url: str) -> Response:
+        self._ensure_session()
         url = self.complete_url(url)
         app.logger.debug(f"GET {url}")
         response = self.session.get(url)
@@ -72,6 +107,7 @@ class JsonClient:
         return response
 
     def post(self, url: str, data: Any) -> Response:
+        self._ensure_session()
         url = self.complete_url(url)
         body = app.json.dumps(data)
         app.logger.debug(f"POST {url}\n{body}")
@@ -84,6 +120,7 @@ class JsonClient:
         return response
 
     def put(self, url: str, data: Any) -> Response:
+        self._ensure_session()
         url = self.complete_url(url)
         body = app.json.dumps(data)
         app.logger.debug(f"PUT {url}\n{body}")
@@ -96,6 +133,7 @@ class JsonClient:
         return response
 
     def patch(self, url: str, data: Any) -> Response:
+        self._ensure_session()
         url = self.complete_url(url)
         body = app.json.dumps(data)
         app.logger.debug(f"PATCH {url}\n{body}")
@@ -108,6 +146,7 @@ class JsonClient:
         return response
 
     def delete(self, url: str) -> Response:
+        self._ensure_session()
         url = self.complete_url(url)
         app.logger.debug(f"DELETE {url}")
         response = self.session.delete(url)

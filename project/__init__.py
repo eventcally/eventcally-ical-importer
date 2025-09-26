@@ -165,6 +165,9 @@ oauth.register(
     fetch_token=fetch_eventcally_token,
     update_token=update_token,
 )
+oauth_private_key = os.getenv("EVENTCALLY_PRIVATE_KEY").replace(r"\n", "\n")
+oauth_kid = os.getenv("EVENTCALLY_KID")
+eventcally_app_id = os.getenv("EVENTCALLY_APP_ID")
 
 
 import project.api

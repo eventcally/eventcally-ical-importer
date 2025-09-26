@@ -5,8 +5,17 @@
 
     function save() {
       btn_loading($("#save_btn"));
-      fetch("{{ url_for('configurations_update_js_save', id=configuration.id) }}", {method:'put', body: new FormData(form)})
-        .then(_ => btn_loaded($("#save_btn")));
+      const form = document.getElementById("form");
+      $.ajax({
+        url: "{{ url_for('configurations_update_js_save', id=configuration.id) }}",
+        method: "PUT",
+        data: new FormData(form),
+        processData: false,
+        contentType: false,
+        complete: function () {
+          btn_loaded($("#save_btn"));
+        }
+      });
     }
 
     function preview() {
@@ -16,10 +25,13 @@
       preview_body.empty();
       $("#preview_table").hide();
 
-      fetch("{{ url_for('configurations_update_js_preview', id=configuration.id) }}", {method:'post', body: new FormData(form)})
-        .then(response => response.json())
-        .then(run => {
-
+      $.ajax({
+        url: "{{ url_for('configurations_update_js_preview', id=configuration.id) }}",
+        method: "POST",
+        data: new FormData(form),
+        processData: false,
+        contentType: false,
+        success: function (run) {
           $.each(run.log_entries, function(index, log_entry) {
             if (log_entry.type == "vevent") {
               const vevent = log_entry.context.vevent;
@@ -31,12 +43,13 @@
             } else {
               preview_body.append('<tr><td colspan="5">' + log_entry.message + '</td></tr>');
             }
-
           });
-
-          btn_loaded($("#preview_btn"));
           $("#preview_table").show();
-        });
+        },
+        complete: function () {
+          btn_loaded($("#preview_btn"));
+        }
+      });
     }
 
     function finish() {
@@ -49,8 +62,13 @@
       }
 
       btn_loading($("#delete_btn"));
-      fetch("{{ url_for('configurations_update_js_delete', id=configuration.id) }}", {method:'delete'})
-        .then(_ => location.replace("{{ url_for('configurations') }}"));
+      $.ajax({
+        url: "{{ url_for('configurations_update_js_delete', id=configuration.id) }}",
+        method: "DELETE",
+        complete: function () {
+          location.replace("{{ url_for('configurations') }}");
+        }
+      });
     }
 
     $(document).ready(function() {
@@ -75,11 +93,11 @@
 
 {% block content %}
 <h1>Update {{ configuration.title or configuration.id }}</h1>
+<p>{{ configuration.app_installation.organization_name }}</p>
 
   <form id="form">
     <div>
       {{ render_field('title', 'input') }}
-      {{ render_field('organization_id', 'input') }}
       {{ render_field('identifier_tag', 'input') }}
       {{ render_field('url', 'input', input_type='url') }}
 

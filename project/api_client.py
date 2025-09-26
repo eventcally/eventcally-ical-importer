@@ -1,4 +1,8 @@
+import datetime
+from urllib.parse import quote_plus
+
 from project import app
+from project.api import GmtDateTimeField
 from project.json_client import JsonClient, NotFoundError, UnprocessableEntityError
 
 
@@ -7,7 +11,26 @@ class ApiClient:
         self.json_client = json_client
         self.organization_id = None
 
-    def get_categories(self) -> int:
+    def get_app_installations(self, last_sync: datetime.datetime):
+        app.logger.debug("Get app installations")
+        url = "/app/installations"
+
+        if last_sync:
+            last_sync_with_delta = last_sync - datetime.timedelta(minutes=5)
+            last_modified_at_from = GmtDateTimeField()._serialize(
+                last_sync_with_delta, None, None
+            )
+            last_modified_at_from_encoded = quote_plus(last_modified_at_from)
+            url = f"{url}?last_modified_at_from={last_modified_at_from_encoded}"
+
+        return self._get_all_items(url)
+
+    def get_user_app_installations(self):
+        app.logger.debug("Get user app installations")
+        url = "/user/app_installations?admin_only=1"
+        return self._get_all_items(url)
+
+    def get_categories(self):
         app.logger.debug("Get categories")
         response = self.json_client.get("/event-categories?per_page=50")
         pagination = response.json()
@@ -90,23 +113,26 @@ class ApiClient:
     def find_events_by_internal_tag(self, tag: str) -> int:
         return self._find_events_by_tag_field("internal_tag", tag)
 
-    def _find_events_by_tag_field(self, field: str, tag: str) -> int:
-        events = list()
+    def _find_events_by_tag_field(self, field: str, tag: str):
+        url = f"/organizations/{self.organization_id}/events/search?{field}={tag}"
+        return self._get_all_items(url)
+
+    def _get_all_items(self, url: str):
+        items = list()
         page = 1
+        separator = "&" if "?" in url else "?"
 
         while True:
-            response = self.json_client.get(
-                f"/organizations/{self.organization_id}/events/search?{field}={tag}&per_page=50&page={page}"
-            )
+            response = self.json_client.get(f"{url}{separator}per_page=50&page={page}")
             pagination = response.json()
-            events.extend(pagination["items"])
+            items.extend(pagination["items"])
 
             if pagination["has_next"]:
                 page += 1
             else:
                 break
 
-        return events
+        return items
 
     def insert_event(self, data: dict) -> int:
         app.logger.debug(f"Insert event {data['name']}")

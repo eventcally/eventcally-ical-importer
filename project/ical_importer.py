@@ -5,7 +5,7 @@ import requests
 from ics import Calendar
 from jinja2 import BaseLoader, Environment
 
-from project import oauth
+from project import oauth, oauth_kid, oauth_private_key
 from project.api_client import ApiClient
 from project.json_client import JsonClient
 from project.models import Configuration, ImportedEvent, LogEntry, Run
@@ -51,7 +51,11 @@ class IcalImporter:
         self._ensure_api_client()
         self.uids_to_import = set()
 
-        if not self.dry:
+        if self.dry:
+            self.eventcally_places = []
+            self.eventcally_organizers = []
+            self.eventcally_events = []
+        else:
             self._load_events_from_eventcally()
             self._load_categories_from_eventcally()
 
@@ -153,7 +157,7 @@ class IcalImporter:
         self.vevent_is_new = True
         self.vevent_is_unchanged = False
 
-        if self.vevent_imported_event:
+        if self.vevent_imported_event and self.eventcally_events:
             self.eventcally_event = next(
                 (
                     e
@@ -337,7 +341,12 @@ class IcalImporter:
     def _ensure_api_client(self):
         if not self.api_client:
             self.api_client = ApiClient(
-                JsonClient(oauth.eventcally, self.configuration.user)
+                JsonClient(
+                    oauth.eventcally,
+                    oauth_private_key=oauth_private_key,
+                    oauth_kid=oauth_kid,
+                    app_installation_id=self.configuration.app_installation_id,
+                )
             )
             self.api_client.organization_id = self.configuration.organization_id
 
