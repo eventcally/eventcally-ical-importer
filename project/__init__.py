@@ -1,6 +1,6 @@
 import logging
 import os
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 import flask
 from authlib.integrations.flask_client import OAuth
@@ -68,7 +68,7 @@ app.config.update(
 )
 
 
-from project.celery import create_celery
+from project.celery_init import create_celery
 
 celery = create_celery(app)
 
@@ -149,6 +149,8 @@ def update_token(token, refresh_token=None, access_token=None):
     user.access_token = token["access_token"]
     user.refresh_token = token.get("refresh_token")
     user.expires_at = token["expires_at"]
+    user.token_created_at = datetime.utcnow()
+    user.last_token_check = datetime.utcnow()
     db.session.commit()
 
 

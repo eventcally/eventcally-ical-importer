@@ -28,7 +28,9 @@
         "project.celery",
         "worker",
         "--loglevel=debug",
-        "--concurrency=1"
+        "--concurrency=1",
+        "--pool",
+        "solo"
       ],
       "justMyCode": false,
       "console": "integratedTerminal",

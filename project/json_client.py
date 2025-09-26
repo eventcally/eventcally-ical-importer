@@ -34,6 +34,7 @@ class JsonClient:
 
     def _ensure_session(self):
         if self.session and self.session.token:
+            app.logger.debug("Session token already exists")
             return
 
         metadata = self.oauth_client.load_server_metadata()
@@ -48,6 +49,7 @@ class JsonClient:
                 update_token=self._update_token,
                 **client_kwargs,
             )
+            app.logger.debug("Session with user")
         else:
             sub = (
                 f"app_installation:{self.app_installation_id}"
@@ -60,6 +62,7 @@ class JsonClient:
                 "sub": sub,
             }
             headers = {"kid": self.oauth_kid}
+            app.logger.debug(f"Session with {claims} {headers} {self.oauth_client.client_id} {token_endpoint}")
             private_key_jwt = CustomPrivateKeyJWT(token_endpoint, claims, headers)
             self.session = OAuth2Session(
                 self.oauth_client.client_id,

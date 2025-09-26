@@ -141,7 +141,7 @@ def configurations_update_js_preview(id):
 @app.route("/configurations/<id>/update/js/import", methods=["GET", "POST"])
 @login_required
 def configurations_update_js_import(id):
-    from project.celery import get_celery_poll_result
+    from project.celery_init import get_celery_poll_result
     from project.celery_tasks import perform_run_task
 
     configuration = (
