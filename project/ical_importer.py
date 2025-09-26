@@ -345,7 +345,7 @@ class IcalImporter:
                     oauth.eventcally,
                     oauth_private_key=oauth_private_key,
                     oauth_kid=oauth_kid,
-                    app_installation_id=self.configuration.app_installation_id,
+                    app_installation_id=self.configuration.app_installation.eventcally_id,
                 )
             )
             self.api_client.organization_id = self.configuration.organization_id
