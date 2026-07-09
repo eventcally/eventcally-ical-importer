@@ -388,7 +388,8 @@ class IcalImporter:
                 None,
             )
             if imported_event:
-                to_remove_from_imported_events.remove(imported_event)
+                if imported_event in to_remove_from_imported_events:
+                    to_remove_from_imported_events.remove(imported_event)
             else:
                 self._append_imported_event(vevent_uid, event["id"], None)
 
