@@ -45,7 +45,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      - ${POSTGRES_DATA_PATH}:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
   db-backup:
     image: prodrigestivill/postgres-backup-local:12
@@ -70,7 +70,7 @@ services:
       test: "redis-cli -a '${REDIS_PASSWORD}' ping | grep PONG"
       start_period: "5s"
     volumes:
-      - ${REDIS_DATA_PATH}:/bitnami/redis/data
+      - redis_data:/bitnami/redis/data
     environment:
       REDIS_PASSWORD: ${REDIS_PASSWORD}
 
@@ -105,3 +105,7 @@ services:
       - ${FLUENTD_LOG_PATH}:/fluentd/log
       - ${FLUENTD_CUSTOM_CONFIG_PATH}/fluentd-custom.config:/fluentd/etc/fluentd-custom.config
       - ${FLUENTD_DOCKER_CONTAINERS_PATH}:/fluentd/containers
+
+volumes:
+  postgres_data:
+  redis_data:
