@@ -1,0 +1,49 @@
+name: Tests
+
+on: [pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: eventcally
+          POSTGRES_PASSWORD: pass
+          POSTGRES_DB: eventcally_ical_importer_tests
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready --username=eventcally"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://eventcally:pass@localhost/eventcally_ical_importer_tests
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v7
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.12.1"
+          python-version: "3.12"
+          enable-cache: true
+
+      - name: Install Python dependencies
+        run: uv sync --locked
+
+      - name: Check the migrations build the schema
+        env:
+          DATABASE_URL: ${{ env.TEST_DATABASE_URL }}
+          EVENTCALLY_URL: http://eventcally.test
+          EVENTCALLY_PRIVATE_KEY: unused
+        run: uv run --no-sync flask db upgrade
+
+      - name: Run the tests
+        run: uv run --no-sync pytest --cov=project --cov-report=term-missing

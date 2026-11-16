@@ -64,7 +64,7 @@ services:
         condition: service_healthy
 
   redis:
-    image: bitnami/redis:6.2
+    image: bitnami/redis:latest
     restart: always
     healthcheck:
       test: "redis-cli -a '${REDIS_PASSWORD}' ping | grep PONG"

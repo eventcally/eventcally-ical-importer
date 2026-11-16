@@ -25,3 +25,16 @@
 README.md
 tmp
 venv
+celerybeat-schedule*
+venv/
+.venv/
+htmlcov/
+.pytest_cache/
+.coverage
+.coverage.*
+.agents/
+.claude/
+.playwright-mcp/
+project/static/dist
+**/.DS_Store
+*.pem

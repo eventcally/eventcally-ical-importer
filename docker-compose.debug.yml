@@ -1,0 +1,73 @@
+name: "eventcally-ical-importer-dev"
+
+# Host ports are shifted against the eventcally dev stack (5678/5679/5173 there), so both
+# can run side by side: debugpy 5680 (Flask) and 5681 (worker), Vite 5175.
+# Debug overlay: the source is bind-mounted, Flask and the Celery worker wait for a
+# debugger (VS Code: "Docker: Flask/Celery") and the frontend comes from the Vite dev server.
+#   docker compose -f docker-compose.yml -f docker-compose.debug.yml up --build
+
+services:
+  web:
+    entrypoint: []
+    environment:
+      # Flask renders the Vue 3 shells and loads the sources from the Vite dev server
+      # (the browser, not the container, talks to it, hence localhost).
+      VITE_DEV_SERVER_URL: http://localhost:5175
+    volumes:
+      - .:/app
+    # The entrypoint is skipped, so the migrations run here. Retried like in entrypoint.sh:
+    # a fresh database volume reports healthy while Postgres still restarts after its init.
+    command: >
+      sh -c "until flask db upgrade; do echo 'Waiting for postgres server to become available...'; sleep 2; done;
+      python -m debugpy --listen 0.0.0.0:5680 -m flask run --host 0.0.0.0 --port 5002 --no-reload"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # Replaces the base mapping: Flask listens on 5002 here, because inside the container
+    # port 5000 is the way to a local EventCally (see web-eventcally).
+    ports: !override
+      - "5002:5002"
+      - "5680:5680"
+
+  worker:
+    entrypoint: []
+    volumes:
+      - .:/app
+    command: >
+      python -m debugpy --listen 0.0.0.0:5681 -m celery -A project.celery worker
+      --loglevel=debug --concurrency=1 --pool solo
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "5681:5681"
+
+  # A local EventCally (the eventcally dev stack on host port 5000) is configured as
+  # EVENTCALLY_URL=http://127.0.0.1:5000: the browser needs that address for the login, but
+  # inside a container it is the container itself. These sidecars share the network of web /
+  # worker and forward their 127.0.0.1:5000 to the host. Unused with any other EVENTCALLY_URL.
+  web-eventcally: &eventcally-forward
+    image: alpine/socat:1.8.0.3
+    network_mode: "service:web"
+    command: TCP-LISTEN:5000,bind=127.0.0.1,fork,reuseaddr TCP:host.docker.internal:5000
+    depends_on:
+      - web
+
+  worker-eventcally:
+    <<: *eventcally-forward
+    network_mode: "service:worker"
+    depends_on:
+      - worker
+
+  vite:
+    image: node:22.23.4-slim
+    working_dir: /app/frontend
+    volumes:
+      - .:/app
+      # Keep the container's (Linux) dependencies apart from a host node_modules.
+      - frontend_node_modules:/app/frontend/node_modules
+    # `npm run i18n` writes the gitignored src/locales/*.json from the .po files.
+    command: sh -c "npm ci && npm run i18n && npm run dev -- --host 0.0.0.0 --port 5175"
+    ports:
+      - "5175:5175"
+
+volumes:
+  frontend_node_modules:

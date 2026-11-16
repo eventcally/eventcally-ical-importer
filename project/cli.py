@@ -1,9 +1,12 @@
+import json
+
 import click
 from flask.cli import AppGroup
 
 from project import app
 
 configuration_cli = AppGroup("configuration")
+bff_cli = AppGroup("bff")
 
 
 @configuration_cli.command("run")
@@ -22,4 +25,13 @@ def configuration_run(id: int):
     db.session.commit()
 
 
+@bff_cli.command("openapi")
+def bff_openapi():
+    """Print the OpenAPI document of the BFF (the source of frontend/openapi.json)."""
+    from project.bff.openapi import build_openapi
+
+    click.echo(json.dumps(build_openapi(), indent=2, sort_keys=True))
+
+
 app.cli.add_command(configuration_cli)
+app.cli.add_command(bff_cli)

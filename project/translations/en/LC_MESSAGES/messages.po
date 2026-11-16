@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-06 18:59+0100\n"
+"POT-Creation-Date: 2026-11-16 14:24+0100\n"
 "PO-Revision-Date: 2024-01-23 23:12+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,30 +16,242 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.18.0\n"
 
-#: project/templates/index.html:5 project/templates/layout.html:71
-msgid "Login"
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:51
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:57
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:30
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:46
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:58
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:23
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:39
+#: frontend/src/apps/importer/pages/RunPage.vue:36
+msgid "Error"
 msgstr ""
 
-#: project/templates/configurations/index.html:5
-#: project/templates/layout.html:56
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:78
+msgid "Configuration saved"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:106
+msgid "Configuration deleted"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:130
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:77
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:49
+#: frontend/src/apps/importer/pages/RunPage.vue:46
+#: project/templates/layout.html:47
 msgid "Configurations"
 msgstr ""
 
-#: project/templates/layout.html:66
-msgid "Logout"
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:132
+msgid "Update"
 msgstr ""
 
-#: project/templates/configurations/index.html:6
-msgid "Create"
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:136
+#, python-format
+msgid "Update %(title)s"
 msgstr ""
 
-#: project/templates/configurations/read.html:21
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:145
+msgid "Feed"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:171
+msgid "Field mapping"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:173
+msgid "Jinja templates that build the event from the feed entry."
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:200
+msgid "Save"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:211
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:230
+msgid "Preview"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:214
+msgid "Close"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:224
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:271
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:272
+msgid "Delete configuration"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:231
+msgid "entries"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:274
+msgid "Cancel"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:279
+msgid "Delete configuration?"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:83
+#: frontend/src/apps/importer/pages/RunPage.vue:48
 msgid "Configuration"
 msgstr ""
 
-#: project/templates/configurations/read.html:22
-msgid "Update"
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:91
+msgid "Edit configuration"
 msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:96
+msgid "Loading..."
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:98
+msgid "Start run"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:106
+msgid "Feed URL"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:116
+msgid "No feed URL yet"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:123
+msgid "Runs"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:130
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:145
+#: frontend/src/apps/importer/pages/RunPage.vue:51
+#: frontend/src/apps/importer/pages/RunPage.vue:55
+msgid "Run"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:131
+msgid "Status"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:132
+#: frontend/src/apps/importer/pages/RunPage.vue:23
+msgid "New"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:133
+#: frontend/src/apps/importer/pages/RunPage.vue:24
+msgid "Updated"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:134
+#: frontend/src/apps/importer/pages/RunPage.vue:25
+msgid "Deleted"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:135
+#: frontend/src/apps/importer/pages/RunPage.vue:28
+msgid "Failures"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:159
+msgid "No runs yet"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:164
+msgid "Imported events"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:173
+msgid "Vevent UID"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:174
+msgid "EventCally Link"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:175
+msgid "Data"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:187
+#: frontend/src/apps/importer/pages/RunPage.vue:93
+msgid "Show data"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:193
+msgid "No imported events yet"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:71
+msgid "No configurations yet"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:75
+msgid "Organizations"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:77
+msgid "Create a configuration for one of your organizations."
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:100
+msgid "Create configuration"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:105
+msgid "The app is not installed for any organization you administrate."
+msgstr ""
+
+#: frontend/src/apps/importer/pages/RunPage.vue:26
+msgid "Unchanged"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/RunPage.vue:27
+msgid "Skipped"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/RunPage.vue:77
+msgid "Configuration settings of this run"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/RunPage.vue:83
+msgid "Log entries"
+msgstr ""
+
+#: frontend/src/apps/importer/pages/RunPage.vue:97
+msgid "No log entries"
+msgstr ""
+
+#: frontend/src/shared/NotFoundPage.vue:10
+msgid "The requested resource was not found"
+msgstr ""
+
+#: project/templates/index.html:10
+msgid ""
+"Import the events of an iCal feed into your EventCally organization, "
+"automatically once a day."
+msgstr ""
+
+#: project/templates/index.html:11
+msgid "Login with EventCally"
+msgstr ""
+
+#: project/templates/layout.html:57
+msgid "Update app installations"
+msgstr ""
+
+#: project/templates/layout.html:59
+msgid "Logout"
+msgstr ""
+
+#: project/templates/layout.html:63
+msgid "Login"
+msgstr ""
+
+#~ msgid "Create"
+#~ msgstr ""
 

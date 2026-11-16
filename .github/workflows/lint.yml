@@ -2,12 +2,27 @@ name: Lint
 
 on: [pull_request]
 
+permissions:
+  contents: read
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v4
-      - uses: jamescurtin/isort-action@master
-      - uses: psf/black@23.3.0
-      - uses: TrueBrain/actions-flake8@v1.4.1
+      - uses: actions/checkout@v7
+      # Tool versions come from uv.lock (dev group, pinned in lockstep with
+      # .pre-commit-config.yaml), not from mutable third-party actions.
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.12.1"
+          python-version: "3.12"
+          enable-cache: true
+      - name: Install lint tools
+        run: uv sync --locked --only-dev
+      - name: Run isort
+        run: uv run --no-sync isort --check-only --diff .
+      - name: Run black
+        run: uv run --no-sync black --check --diff .
+      - name: Run flake8
+        run: uv run --no-sync flake8

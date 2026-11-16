@@ -1,4 +1,5 @@
 import datetime
+import re
 import traceback
 
 import requests
@@ -88,7 +89,8 @@ class IcalImporter:
 
     def _load_calendar_from_url(self):
         try:
-            self.calendar = Calendar(requests.get(self.configuration.url).text)
+            text = requests.get(self.configuration.url).text
+            self.calendar = Calendar(self._normalize_line_breaks(text))
             self.calendar_name = next(
                 (
                     line.value
@@ -100,6 +102,13 @@ class IcalImporter:
         except Exception as e:
             self._log(f"Error loading url: {str(e)}")
             self.run.status = "failure"
+
+    @staticmethod
+    def _normalize_line_breaks(text: str) -> str:
+        # A carriage return without a line feed is not a line end in iCal, but the parser
+        # splits the content line there and fails on the rest. Feeds carry them inside
+        # texts (e.g. a description typed with old Mac line ends): keep them as a line break.
+        return re.sub(r"\r(?!\n)", r"\\n", text)
 
     def _create_run(self):
         self.run = Run(status="success")
@@ -520,7 +529,7 @@ class IcalImporter:
         return f"{self._get_configuration_event_tag()},{self._get_vevent_event_tag()}"
 
     def _get_configuration_event_tag(self):
-        return f"{IcalImporter.tag_configuration_prefix}{self.configuration.identifier_tag.replace(',','')}"
+        return f"{IcalImporter.tag_configuration_prefix}{self.configuration.identifier_tag.replace(',', '')}"
 
     def _get_vevent_event_tag(self):
-        return f"{IcalImporter.tag_vevent_prefix}{self.vevent.uid.replace(',','')}"
+        return f"{IcalImporter.tag_vevent_prefix}{self.vevent.uid.replace(',', '')}"

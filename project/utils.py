@@ -2,7 +2,7 @@ import os
 from functools import wraps
 
 from authlib.integrations.base_client.errors import OAuthError
-from flask import Flask, abort, g, redirect, request, session, url_for
+from flask import Flask, g, redirect, session, url_for
 
 
 def get_user():
@@ -28,33 +28,42 @@ def get_user():
     return g._cached_user
 
 
+def check_session_user() -> bool:
+    """Whether the request has a user whose EventCally token still works.
+
+    Verifies the token (at most once a minute; a rejected token ends the session) and
+    keeps the user's app installations in sync. Shared by the page shells
+    (`login_required`) and the BFF, which answer a missing user in their own way.
+    """
+    import datetime
+
+    from project import current_user, db, oauth
+    from project.dateutils import is_datetime_older_than_seconds
+
+    if not current_user:
+        return False
+
+    if is_datetime_older_than_seconds(current_user.last_token_check, 60):
+        try:
+            oauth.eventcally.userinfo()
+        except OAuthError:
+            session.pop("user_id", None)
+            return False
+
+        current_user.last_token_check = datetime.datetime.utcnow()
+        db.session.commit()
+
+    if is_datetime_older_than_seconds(current_user.last_app_installations_sync, 60):
+        load_user_app_installations()
+
+    return True
+
+
 def login_required(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
-        import datetime
-
-        from project import current_user, db, oauth
-        from project.dateutils import is_datetime_older_than_seconds
-
-        if not current_user:
+        if not check_session_user():
             return redirect(url_for("login"))
-
-        if is_datetime_older_than_seconds(current_user.last_token_check, 60):
-            try:
-                oauth.eventcally.userinfo()
-            except OAuthError:
-                session.pop("user_id", None)
-
-                if request.headers.get("X-Requested-With") == "Ajax":
-                    abort(401)
-                else:
-                    return redirect(url_for("login"))
-
-            current_user.last_token_check = datetime.datetime.utcnow()
-            db.session.commit()
-
-        if is_datetime_older_than_seconds(current_user.last_app_installations_sync, 60):
-            load_user_app_installations()
 
         return f(*args, **kwargs)
 

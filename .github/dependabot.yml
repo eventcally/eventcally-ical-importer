@@ -1,0 +1,126 @@
+# Version updates. Several versions are pinned in lockstep in places Dependabot cannot
+# update (setup-node `node-version`, setup-uv `version`, the uv `COPY --from` tag,
+# .pre-commit-config.yaml); those are bumped by hand.
+# Version updates are minor and patch only (majors are done by hand), except for
+# GitHub Actions, whose majors come grouped with the rest.
+# Version updates run monthly (first of the month, 06:00 Berlin); security updates are not
+# scheduled and come as soon as an alert appears.
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+      time: "06:00"
+      timezone: Europe/Berlin
+    cooldown:
+      default-days: 7
+    labels: [dependencies, github-actions]
+    groups:
+      # All update types, majors included, in one PR.
+      github-actions:
+        patterns: ["*"]
+      github-actions-security:
+        applies-to: security-updates
+        patterns: ["*"]
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: monthly
+      time: "06:00"
+      timezone: Europe/Berlin
+    cooldown:
+      default-days: 7
+      exclude: ["node"]          # Node patch images are security releases
+    labels: [dependencies, docker]
+    ignore:
+      # requires-python ==3.12.*, .python-version, setup-uv python-version: a Python
+      # bump is a deliberate multi-file change.
+      - dependency-name: python
+        versions: [">= 3.13"]
+      # Major updates are bumped by hand (security updates still come).
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
+    groups:
+      docker-minor-patch:
+        update-types: [minor, patch]
+        patterns: ["*"]
+
+  - package-ecosystem: docker-compose
+    directories:                 # docker-compose.yml and the deployment compose file
+      - /
+      - /deployment/docker-compose
+    schedule:
+      interval: monthly
+      time: "06:00"
+      timezone: Europe/Berlin
+    cooldown:
+      default-days: 7
+    labels: [dependencies, docker]
+    ignore:
+      # PostgreSQL major = data migration.
+      - dependency-name: postgis/postgis
+      # Major updates are bumped by hand (security updates still come).
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
+    groups:
+      docker-compose-minor-patch:
+        update-types: [minor, patch]
+        patterns: ["*"]
+
+  - package-ecosystem: uv
+    directory: /                 # pyproject.toml + uv.lock
+    schedule:
+      interval: monthly
+      time: "06:00"
+      timezone: Europe/Berlin
+    cooldown:
+      default-days: 7
+    labels: [dependencies, python]
+    ignore:
+      # Pinned in lockstep with .pre-commit-config.yaml, which Dependabot cannot update;
+      # bumped by hand. A name-level ignore also blocks security updates, so their
+      # security fixes are manual too: check the alerts for these yourself.
+      - dependency-name: black
+      - dependency-name: isort
+      - dependency-name: flake8
+      # Pinned on purpose: newer tatsu versions crash the ics import on Python 3.12.
+      - dependency-name: tatsu
+      - dependency-name: ics
+      # 2.1 defaults postgresql:// to the psycopg 3 driver.
+      - dependency-name: sqlalchemy
+        versions: [">= 2.1"]
+      # Major updates are bumped by hand (security updates still come).
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
+    groups:
+      python-minor-patch:
+        update-types: [minor, patch]
+        patterns: ["*"]
+      python-security:
+        applies-to: security-updates
+        patterns: ["*"]
+
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: monthly
+      time: "06:00"
+      timezone: Europe/Berlin
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 10
+    labels: [dependencies, javascript]
+    ignore:
+      # Major updates are bumped by hand (security updates still come).
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
+    groups:
+      frontend-minor-patch:
+        update-types: [minor, patch]
+        patterns: ["*"]
+      frontend-security:
+        applies-to: security-updates
+        patterns: ["*"]

@@ -62,7 +62,9 @@ class JsonClient:
                 "sub": sub,
             }
             headers = {"kid": self.oauth_kid}
-            app.logger.debug(f"Session with {claims} {headers} {self.oauth_client.client_id} {token_endpoint}")
+            app.logger.debug(
+                f"Session with {claims} {headers} {self.oauth_client.client_id} {token_endpoint}"
+            )
             private_key_jwt = CustomPrivateKeyJWT(token_endpoint, claims, headers)
             self.session = OAuth2Session(
                 self.oauth_client.client_id,

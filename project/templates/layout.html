@@ -1,6 +1,6 @@
 {% block doc -%}
 <!doctype html>
-<html lang="de"{% block html_attribs %}{% endblock html_attribs %}>
+<html lang="{{ boot.locale if boot else 'de' }}"{% block html_attribs %}{% endblock html_attribs %}>
   {%- block html %}
   <head>
     {%- block head %}
@@ -19,68 +19,59 @@
     {%- block styles_before %}
     {%- endblock styles_before %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='ext/bootstrap.4.6.2.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='ext/bootstrap.5.3.3.min.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='ext/font-awesome.5.13.1/css/all.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
 
     {%- block styles %}
     {%- endblock styles %}
 
-    {% if False | env_override('FLASK_DEBUG') %}
-    <script src="{{ url_for('static', filename='ext/jquery-3.6.4.js')}}"></script>
-    {% else %}
-    <script src="{{ url_for('static', filename='ext/jquery-3.6.4.min.js')}}"></script>
-    {% endif %}
-
-    {% block header_before_site_js %}
-    {%- endblock -%}
-    <script src="{{ url_for('static', filename='site.js')}}"></script>
-
     {% block header %}
     {% endblock %}
     {%- endblock head %}
   </head>
-  <body{% block body_attribs %}{% endblock body_attribs %}>
+  <body class="bg-body-tertiary"{% block body_attribs %}{% endblock body_attribs %}>
     {% block body -%}
       {% block navbar %}
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <div class="container-xl">
           <a class="navbar-brand" href="{{ url_for('index') }}">
-            <img src="{{ url_for('static', filename='calendar_icon_90.png')}}" width="30" height="30" class="d-inline-block align-top rounded" alt="Logo">
+            <img src="{{ url_for('static', filename='calendar_icon_90.png')}}" width="30" height="30" class="d-inline-block align-top rounded me-2" alt="">iCal importer
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav mr-auto">
-                {% if current_user %}
-                <a class="nav-item nav-link" href="{{ url_for('configurations') }}">{{ _('Configurations') }}</a>
-                {% endif %}
-              </div>
-              <div class="navbar-nav navbar-right">
-                {% if current_user %}
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarUserDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {{ current_user.email }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarUserDropdown">
-                      <a class="dropdown-item" href="{{ url_for('user_update_app_installations') }}">{{ _('Update app installations') }}</a>
-                      <a class="dropdown-item" href="{{ url_for('logout') }}">{{ _('Logout') }}</a>
-                    </div>
-                  </li>
-
-                {% else %}
-                  <a class="nav-item nav-link" href="{{ url_for('login') }}">{{ _('Login') }}</a>
-                {% endif %}
-
-              </div>
+            <ul class="navbar-nav me-auto">
+              {% if current_user %}
+              <li class="nav-item"><a class="nav-link{% if request.path.startswith('/configurations') %} active{% endif %}" href="{{ url_for('configurations') }}">{{ _('Configurations') }}</a></li>
+              {% endif %}
+            </ul>
+            <ul class="navbar-nav">
+              {% if current_user %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-user-circle me-1" aria-hidden="true"></i>{{ current_user.email }}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserDropdown">
+                  <li><a class="dropdown-item" href="{{ url_for('user_update_app_installations') }}"><i class="fas fa-sync-alt fa-fw me-2 text-secondary" aria-hidden="true"></i>{{ _('Update app installations') }}</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt fa-fw me-2 text-secondary" aria-hidden="true"></i>{{ _('Logout') }}</a></li>
+                </ul>
+              </li>
+              {% else %}
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">{{ _('Login') }}</a></li>
+              {% endif %}
+            </ul>
           </div>
+        </div>
       </nav>
       {%- endblock navbar %}
 
       <div class="body-content"{% block body_content__attribs %}{% endblock body_content__attribs %}>
 
           {% block content_container -%}
-          <main {% block content_container_attribs %}class="p-3"{% endblock content_container_attribs %}>
+          <main {% block content_container_attribs %}class="container-xl py-4"{% endblock content_container_attribs %}>
             <div {% block messages_container_attribs %}{% endblock messages_container_attribs %}>
               {% include "_messages.html" %}
             </div>
@@ -91,8 +82,7 @@
           {%- endblock content_container %}
       </div>
 
-      <script src="{{ url_for('static', filename='ext/popper.1.16.0.min.js')}}"></script>
-      <script src="{{ url_for('static', filename='ext/bootstrap.4.6.2.min.js')}}"></script>
+      <script src="{{ url_for('static', filename='ext/bootstrap.5.3.3.bundle.min.js')}}"></script>
       {% block scripts %}
       {%- endblock scripts %}
     {%- endblock body %}

@@ -1,44 +1,44 @@
+/* Bootstrap 5 provides the design; this only holds what the utilities do not cover. */
+
 h1 {
   font-size: 1.6rem;
-  margin: 1rem 0 2rem;
-}
-
-h2 {
-  font-size: 1.2rem;
-  margin: 2rem 0 1rem;
-}
-
-h3 {
-  font-size: 1.1rem;
-  margin: 2rem 0 1rem;
-}
-
-footer {
-  padding: 10px;
-}
-
-figure {
   margin: 0;
 }
 
-tr.collapse.in {
-  display: table-row;
+h2 {
+  font-size: 1.1rem;
+  margin: 0;
 }
 
-tr.table-borderless td {
-  border: 0;
-  padding: 0;
+.card {
+  border-color: var(--bs-border-color-translucent);
 }
 
-tr.table-line-through td {
-  text-decoration: line-through;
+/* A card that holds a table or list edge to edge. */
+.card > .table-responsive > .table {
+  margin-bottom: 0;
 }
 
-.text-toogle[aria-expanded="false"] .text-expanded {
-  display: none;
+.card > .table-responsive > .table > :not(caption) > * > :first-child {
+  padding-left: var(--bs-card-spacer-x);
 }
-.text-toogle[aria-expanded="true"] .text-collapsed {
-  display: none;
+
+.card > .table-responsive > .table > :not(caption) > * > :last-child {
+  padding-right: var(--bs-card-spacer-x);
+}
+
+.card > .table-responsive > .table > thead th {
+  background-color: var(--bs-tertiary-bg);
+  color: var(--bs-secondary-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.card > .table-responsive > .table > tbody > tr:last-child > * {
+  border-bottom: 0;
 }
 
 .table td.fit,
@@ -47,18 +47,70 @@ tr.table-line-through td {
   width: 1%;
 }
 
-.ui-autocomplete,
-.ui-datepicker {
-  z-index: 1051 !important;
+.table .num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
 }
 
-.btn-google {
-  color: white;
-  background-color: #ea4335;
+/* Read-only JSON / iCal data. */
+.code-box {
+  background-color: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color-translucent);
+  border-radius: var(--bs-border-radius);
+  font-family: var(--bs-font-monospace);
+  font-size: 0.75rem;
+  margin: 0;
+  max-height: 20rem;
+  overflow: auto;
+  padding: 0.5rem 0.75rem;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
-.input-group {
-  align-items: start;
+details > summary {
+  cursor: pointer;
+}
+
+/* Mapper templates are code. */
+.form-control.template-field {
+  font-family: var(--bs-font-monospace);
+  font-size: 0.85rem;
+}
+
+.field-name {
+  font-family: var(--bs-font-monospace);
+  font-size: 0.8rem;
+}
+
+.stat-tile .stat-value {
+  font-size: 1.6rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* The edit form's actions stay reachable below a long form. */
+.action-bar {
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color-translucent);
+  border-radius: var(--bs-border-radius);
+  bottom: 0.75rem;
+  position: sticky;
+  z-index: 1020;
+}
+
+.table-preview td {
+  min-width: 14rem;
+  vertical-align: top;
+}
+
+/* Vevent, standard and event share most of the width. */
+.table-preview td:nth-child(-n + 3) {
+  width: 26%;
+}
+
+.table-preview td:nth-child(n + 4) {
+  min-width: 11rem;
 }
 
 @media (max-width: 320px) {
@@ -66,61 +118,4 @@ tr.table-line-through td {
   th {
     word-break: break-all;
   }
-}
-
-.text-highlight {
-  color: #dc3545 !important;
-}
-
-.w-normal {
-  max-width: 1024px;
-}
-
-.w-medium {
-  max-width: 400px;
-}
-
-.dropzone-wrapper {
-  border: 2px dashed #91b0b3;
-  color: #92b0b3;
-  position: relative;
-  height: 100px;
-}
-
-.dropzone-desc {
-  position: absolute;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  text-align: center;
-  width: 40%;
-  top: 25px;
-}
-
-.dropzone,
-.dropzone:focus {
-  position: absolute;
-  outline: none !important;
-  width: 100%;
-  height: 100px;
-  cursor: pointer;
-  opacity: 0;
-}
-
-.dropzone-wrapper:hover,
-.dropzone-wrapper.dragover {
-  background: #ecf0f5;
-}
-
-button.dropdown-toggle {
-  white-space: normal;
-  text-align: inherit;
-}
-
-.table-preview td {
-  white-space: pre-line;
-}
-
-.json {
-  white-space: pre-line;
 }
