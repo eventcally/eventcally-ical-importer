@@ -30,7 +30,7 @@
     {% endblock %}
     {%- endblock head %}
   </head>
-  <body class="bg-body-tertiary"{% block body_attribs %}{% endblock body_attribs %}>
+  <body class="bg-body-tertiary d-flex flex-column min-vh-100"{% block body_attribs %}{% endblock body_attribs %}>
     {% block body -%}
       {% block navbar %}
       <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
@@ -68,7 +68,7 @@
       </nav>
       {%- endblock navbar %}
 
-      <div class="body-content"{% block body_content__attribs %}{% endblock body_content__attribs %}>
+      <div class="body-content flex-grow-1"{% block body_content__attribs %}{% endblock body_content__attribs %}>
 
           {% block content_container -%}
           <main {% block content_container_attribs %}class="container-xl py-4"{% endblock content_container_attribs %}>
@@ -81,6 +81,29 @@
           </main>
           {%- endblock content_container %}
       </div>
+
+      {% block footer -%}
+      {%- set eventcally_url = config['EVENTCALLY_URL'] %}
+      <footer class="container-xl py-3">
+        <ul class="list-inline text-center small mb-0">
+          <li class="list-inline-item">
+            <a href="{{ eventcally_url }}/tos" class="text-muted text-decoration-none">{{ _('Terms of service') }}</a>
+          </li>
+          <li class="list-inline-item text-muted" aria-hidden="true">&sdot;</li>
+          <li class="list-inline-item">
+            <a href="{{ eventcally_url }}/legal_notice" class="text-muted text-decoration-none">{{ _('Legal notice') }}</a>
+          </li>
+          <li class="list-inline-item text-muted" aria-hidden="true">&sdot;</li>
+          <li class="list-inline-item">
+            <a href="{{ eventcally_url }}/contact" class="text-muted text-decoration-none">{{ _('Contact') }}</a>
+          </li>
+          <li class="list-inline-item text-muted" aria-hidden="true">&sdot;</li>
+          <li class="list-inline-item">
+            <a href="{{ eventcally_url }}/privacy" class="text-muted text-decoration-none">{{ _('Privacy') }}</a>
+          </li>
+        </ul>
+      </footer>
+      {%- endblock footer %}
 
       <script src="{{ url_for('static', filename='ext/bootstrap.5.3.3.bundle.min.js')}}"></script>
       {% block scripts %}

@@ -10,6 +10,16 @@ def test_shells_need_a_login(client, seeder):
         assert response.headers["Location"].endswith("/login")
 
 
+def test_shell_shows_the_legal_links(client, seeder, utils):
+    user_id, _, _ = seeder.setup_base()
+    utils.login(user_id)
+
+    html = client.get("/configurations").get_data(as_text=True)
+
+    for path in ("tos", "legal_notice", "contact", "privacy"):
+        assert f'href="http://eventcally.test/{path}"' in html
+
+
 def test_shell_hands_the_boot_data_to_the_app(client, seeder, utils):
     user_id, _, _ = seeder.setup_base()
     utils.login(user_id)

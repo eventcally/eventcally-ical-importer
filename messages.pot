@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-16 14:24+0100\n"
+"POT-Creation-Date: 2026-11-16 15:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,6 +49,7 @@ msgid "Update"
 msgstr ""
 
 #: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:136
+#: frontend/src/shared/i18n.spec.ts:19 frontend/src/shared/i18n.spec.ts:26
 #, python-format
 msgid "Update %(title)s"
 msgstr ""
@@ -93,6 +94,7 @@ msgid "Cancel"
 msgstr ""
 
 #: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:279
+#: frontend/src/shared/i18n.spec.ts:15
 msgid "Delete configuration?"
 msgstr ""
 
@@ -106,6 +108,7 @@ msgid "Edit configuration"
 msgstr ""
 
 #: frontend/src/apps/importer/pages/ConfigurationPage.vue:96
+#: frontend/src/shared/i18n.spec.ts:14 frontend/src/shared/i18n.spec.ts:25
 msgid "Loading..."
 msgstr ""
 
@@ -194,6 +197,7 @@ msgid "Organizations"
 msgstr ""
 
 #: frontend/src/apps/importer/pages/ConfigurationsPage.vue:77
+#: frontend/src/shared/i18n.spec.ts:16
 msgid "Create a configuration for one of your organizations."
 msgstr ""
 
@@ -249,5 +253,21 @@ msgstr ""
 
 #: project/templates/layout.html:63
 msgid "Login"
+msgstr ""
+
+#: project/templates/layout.html:90
+msgid "Terms of service"
+msgstr ""
+
+#: project/templates/layout.html:94
+msgid "Legal notice"
+msgstr ""
+
+#: project/templates/layout.html:98
+msgid "Contact"
+msgstr ""
+
+#: project/templates/layout.html:102
+msgid "Privacy"
 msgstr ""
 

@@ -30,3 +30,22 @@ def test_index_is_translated(client):
 
     assert "Mit EventCally anmelden" in german
     assert "Login with EventCally" in english
+
+
+def test_index_shows_the_legal_links(client):
+    html = client.get("/", headers={"Accept-Language": "en"}).get_data(as_text=True)
+
+    assert 'href="http://eventcally.test/tos"' in html
+    assert 'href="http://eventcally.test/legal_notice"' in html
+    assert 'href="http://eventcally.test/contact"' in html
+    assert 'href="http://eventcally.test/privacy"' in html
+    assert "Legal notice" in html
+
+
+def test_legal_links_are_translated(client):
+    html = client.get("/", headers={"Accept-Language": "de"}).get_data(as_text=True)
+
+    assert "Nutzungsbedingungen" in html
+    assert "Impressum" in html
+    assert "Kontakt" in html
+    assert "Datenschutz" in html
