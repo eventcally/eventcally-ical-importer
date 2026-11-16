@@ -32,6 +32,8 @@ app.config["LANGUAGES"] = ["en", "de"]
 app.config["SERVER_NAME"] = os.getenv("SERVER_NAME")
 app.config["FLASK_DEBUG"] = getenv_bool("FLASK_DEBUG", "False")
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=180)
+# Set to the Vite dev server (http://localhost:5175) to load the frontend from it.
+app.config["VITE_DEV_SERVER_URL"] = os.getenv("VITE_DEV_SERVER_URL")
 
 # Proxy handling
 if os.getenv("PREFERRED_URL_SCHEME"):  # pragma: no cover
@@ -99,9 +101,11 @@ app.config["BABEL_DEFAULT_LOCALE"] = "de"
 app.config["BABEL_DEFAULT_TIMEZONE"] = "Europe/Berlin"
 babel = Babel(app, locale_selector=get_locale)
 
-# CRSF protection
+# CRSF protection: opt-in, the BFF checks every unsafe request (project/bff/__init__.py)
 csrf = CSRFProtect(app)
 app.config["WTF_CSRF_CHECK_DEFAULT"] = False
+# The token stays valid as long as the session: the edit page is kept open for long.
+app.config["WTF_CSRF_TIME_LIMIT"] = None
 
 
 # Create db
@@ -172,11 +176,13 @@ oauth_kid = os.getenv("EVENTCALLY_KID")
 eventcally_app_id = os.getenv("EVENTCALLY_APP_ID")
 
 
-import project.api
 from project import celery_tasks, cli, jinja_filters
+from project.bff import init_bff
 
-# Routes
+# Routes: the page shells, and the JSON for the Vue frontend under /bff
 from project.views import auth, configuration, root
+
+init_bff(app)
 
 if __name__ == "__main__":  # pragma: no cover
     app.run()

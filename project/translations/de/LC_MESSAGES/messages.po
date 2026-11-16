@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-06 18:59+0100\n"
+"POT-Creation-Date: 2026-11-16 14:24+0100\n"
 "PO-Revision-Date: 2024-01-23 23:12+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -16,30 +16,244 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.18.0\n"
 
-#: project/templates/index.html:5 project/templates/layout.html:71
-msgid "Login"
-msgstr ""
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:51
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:57
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:30
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:46
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:58
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:23
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:39
+#: frontend/src/apps/importer/pages/RunPage.vue:36
+msgid "Error"
+msgstr "Fehler"
 
-#: project/templates/configurations/index.html:5
-#: project/templates/layout.html:56
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:78
+msgid "Configuration saved"
+msgstr "Konfiguration gespeichert"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:106
+msgid "Configuration deleted"
+msgstr "Konfiguration gelöscht"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:130
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:77
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:49
+#: frontend/src/apps/importer/pages/RunPage.vue:46
+#: project/templates/layout.html:47
 msgid "Configurations"
-msgstr ""
+msgstr "Konfigurationen"
 
-#: project/templates/layout.html:66
-msgid "Logout"
-msgstr ""
-
-#: project/templates/configurations/index.html:6
-msgid "Create"
-msgstr ""
-
-#: project/templates/configurations/read.html:21
-msgid "Configuration"
-msgstr ""
-
-#: project/templates/configurations/read.html:22
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:132
 msgid "Update"
+msgstr "Bearbeiten"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:136
+#, python-format
+msgid "Update %(title)s"
+msgstr "%(title)s bearbeiten"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:145
+msgid "Feed"
+msgstr "Feed"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:171
+msgid "Field mapping"
+msgstr "Feldzuordnung"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:173
+msgid "Jinja templates that build the event from the feed entry."
+msgstr "Jinja-Templates, die aus dem Feed-Eintrag die Veranstaltung erzeugen."
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:200
+msgid "Save"
+msgstr "Speichern"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:211
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:230
+msgid "Preview"
+msgstr "Vorschau"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:214
+msgid "Close"
+msgstr "Schließen"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:224
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:271
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:272
+msgid "Delete configuration"
+msgstr "Konfiguration löschen"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:231
+msgid "entries"
+msgstr "Einträge"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:274
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:279
+msgid "Delete configuration?"
+msgstr "Konfiguration löschen?"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:83
+#: frontend/src/apps/importer/pages/RunPage.vue:48
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:91
+msgid "Edit configuration"
+msgstr "Konfiguration bearbeiten"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:96
+msgid "Loading..."
+msgstr "Lädt..."
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:98
+msgid "Start run"
+msgstr "Lauf starten"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:106
+msgid "Feed URL"
+msgstr "Feed-URL"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:116
+msgid "No feed URL yet"
+msgstr "Noch keine Feed-URL"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:123
+msgid "Runs"
+msgstr "Läufe"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:130
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:145
+#: frontend/src/apps/importer/pages/RunPage.vue:51
+#: frontend/src/apps/importer/pages/RunPage.vue:55
+msgid "Run"
+msgstr "Lauf"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:131
+msgid "Status"
+msgstr "Status"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:132
+#: frontend/src/apps/importer/pages/RunPage.vue:23
+msgid "New"
+msgstr "Neu"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:133
+#: frontend/src/apps/importer/pages/RunPage.vue:24
+msgid "Updated"
+msgstr "Aktualisiert"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:134
+#: frontend/src/apps/importer/pages/RunPage.vue:25
+msgid "Deleted"
+msgstr "Gelöscht"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:135
+#: frontend/src/apps/importer/pages/RunPage.vue:28
+msgid "Failures"
+msgstr "Fehler"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:159
+msgid "No runs yet"
+msgstr "Noch keine Läufe"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:164
+msgid "Imported events"
+msgstr "Importierte Veranstaltungen"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:173
+msgid "Vevent UID"
+msgstr "Vevent-UID"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:174
+msgid "EventCally Link"
+msgstr "EventCally-Link"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:175
+msgid "Data"
+msgstr "Daten"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:187
+#: frontend/src/apps/importer/pages/RunPage.vue:93
+msgid "Show data"
+msgstr "Daten anzeigen"
+
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:193
+msgid "No imported events yet"
+msgstr "Noch keine importierten Veranstaltungen"
+
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:71
+msgid "No configurations yet"
+msgstr "Noch keine Konfigurationen"
+
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:75
+msgid "Organizations"
+msgstr "Organisationen"
+
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:77
+msgid "Create a configuration for one of your organizations."
+msgstr "Erstelle eine Konfiguration für eine deiner Organisationen."
+
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:100
+msgid "Create configuration"
+msgstr "Konfiguration erstellen"
+
+#: frontend/src/apps/importer/pages/ConfigurationsPage.vue:105
+msgid "The app is not installed for any organization you administrate."
+msgstr "Die App ist für keine Organisation installiert, die du verwaltest."
+
+#: frontend/src/apps/importer/pages/RunPage.vue:26
+msgid "Unchanged"
+msgstr "Unverändert"
+
+#: frontend/src/apps/importer/pages/RunPage.vue:27
+msgid "Skipped"
+msgstr "Übersprungen"
+
+#: frontend/src/apps/importer/pages/RunPage.vue:77
+msgid "Configuration settings of this run"
+msgstr "Konfigurationseinstellungen dieses Laufs"
+
+#: frontend/src/apps/importer/pages/RunPage.vue:83
+msgid "Log entries"
+msgstr "Protokolleinträge"
+
+#: frontend/src/apps/importer/pages/RunPage.vue:97
+msgid "No log entries"
+msgstr "Keine Protokolleinträge"
+
+#: frontend/src/shared/NotFoundPage.vue:10
+msgid "The requested resource was not found"
+msgstr "Die angeforderte Ressource wurde nicht gefunden"
+
+#: project/templates/index.html:10
+msgid ""
+"Import the events of an iCal feed into your EventCally organization, "
+"automatically once a day."
 msgstr ""
+"Importiere die Veranstaltungen eines iCal-Feeds in deine EventCally-"
+"Organisation, automatisch einmal täglich."
+
+#: project/templates/index.html:11
+msgid "Login with EventCally"
+msgstr "Mit EventCally anmelden"
+
+#: project/templates/layout.html:57
+msgid "Update app installations"
+msgstr "App-Installationen aktualisieren"
+
+#: project/templates/layout.html:59
+msgid "Logout"
+msgstr "Abmelden"
+
+#: project/templates/layout.html:63
+msgid "Login"
+msgstr "Anmelden"
+
+#~ msgid "Create"
+#~ msgstr ""
 

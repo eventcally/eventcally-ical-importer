@@ -4,9 +4,11 @@ exclude =
     .git,
     .github,
     .pytest_cache,
+    .venv,
     .vscode,
     __pycache__,
     doc,
+    frontend,
     venv,
     tmp
 per-file-ignores =

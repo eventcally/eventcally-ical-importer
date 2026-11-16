@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python",
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
   "python.formatting.provider": "black",
   "python.sortImports.args": [
     "-sp .isort.cfg"
@@ -15,5 +15,15 @@
   },
   "[html]": {
     "editor.formatOnSave": false
-  }
+  },
+  "python.testing.pytestArgs": ["tests"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "containers.commands.composeUp": [
+    {
+      "label": "debug-match",
+      "template": "docker-compose -f docker-compose.yml -f docker-compose.debug.yml up -d --build",
+      "match": "debug"
+    }
+  ]
 }

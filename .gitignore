@@ -88,3 +88,20 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Certificates
+*.pem
+
+.agents
+# Vue 3 frontend build outputs
+project/static/dist/
+frontend/node_modules/
+frontend/src/locales/*.json
+
+# Playwright MCP session logs
+.playwright-mcp/
+
+# Local tool and OS state
+.DS_Store
+.claude/settings.local.json
+.claude/scheduled_tasks.lock

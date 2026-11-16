@@ -2,7 +2,6 @@ import datetime
 from urllib.parse import quote_plus
 
 from project import app
-from project.api import GmtDateTimeField
 from project.json_client import JsonClient, NotFoundError, UnprocessableEntityError
 
 
@@ -17,9 +16,10 @@ class ApiClient:
 
         if last_sync:
             last_sync_with_delta = last_sync - datetime.timedelta(minutes=5)
-            last_modified_at_from = GmtDateTimeField()._serialize(
-                last_sync_with_delta, None, None
-            )
+            # stored as naive UTC
+            last_modified_at_from = last_sync_with_delta.replace(
+                tzinfo=datetime.timezone.utc
+            ).isoformat()
             last_modified_at_from_encoded = quote_plus(last_modified_at_from)
             url = f"{url}?last_modified_at_from={last_modified_at_from_encoded}"
 

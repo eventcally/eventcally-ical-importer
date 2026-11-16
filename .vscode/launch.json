@@ -7,7 +7,7 @@
       "request": "launch",
       "module": "flask",
       "env": {
-        "FLASK_APP": "project",
+        "FLASK_APP": "bootstrap.py",
         "FLASK_ENV": "development",
         "FLASK_DEBUG": "1",
         "FLASK_RUN_PORT": "5002"
@@ -17,6 +17,62 @@
       "jinja": true,
       "console": "integratedTerminal",
       "consoleName": "Flask"
+    },
+    {
+      "name": "Flask (Vite dev server)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "bootstrap.py",
+        "FLASK_ENV": "development",
+        "FLASK_DEBUG": "1",
+        "FLASK_RUN_PORT": "5002",
+        "VITE_DEV_SERVER_URL": "http://localhost:5175"
+      },
+      "args": ["run", "--no-debugger"],
+      "justMyCode": false,
+      "jinja": true,
+      "console": "integratedTerminal",
+      "consoleName": "Flask (Vite)"
+    },
+    {
+      "name": "Vite dev server",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/frontend/node_modules/vite/bin/vite.js",
+      "cwd": "${workspaceFolder}/frontend",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Flask CLI",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "bootstrap.py",
+        "FLASK_ENV": "development",
+        "FLASK_DEBUG": "1"
+      },
+      "args": ["${input:flaskCliCommand}"],
+      "justMyCode": false
+    },
+    {
+      "name": "Python: Aktuelle Datei",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug Unit Test",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "purpose": ["debug-test"],
+      "console": "integratedTerminal",
+      "justMyCode": false
     },
     {
       "name": "Celery worker",
@@ -45,17 +101,85 @@
       "justMyCode": false,
       "console": "integratedTerminal",
       "consoleName": "Celery beat"
+    },
+    {
+      "name": "Gunicorn",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "gunicorn",
+      "args": ["-c", "gunicorn.conf.py", "-w", "1", "project:app"],
+      "justMyCode": false,
+      "console": "integratedTerminal",
+      "consoleName": "Gunicorn"
+    },
+    {
+      "name": "Docker: Flask",
+      "type": "debugpy",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 5680
+      },
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}",
+          "remoteRoot": "/app"
+        }
+      ],
+      "justMyCode": false,
+      "jinja": true,
+      "consoleName": "Docker: Flask"
+    },
+    {
+      "name": "Docker: Celery worker",
+      "type": "debugpy",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 5681
+      },
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}",
+          "remoteRoot": "/app"
+        }
+      ],
+      "justMyCode": false,
+      "consoleName": "Docker: Celery worker"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "flaskCliCommand",
+      "type": "promptString",
+      "description": "Enter Flask CLI command",
+      "default": "routes"
     }
   ],
   "compounds": [
     {
       "name": "Flask/Celery",
-      "configurations": ["Flask", "Celery worker"],
+      "configurations": ["Flask (Vite dev server)", "Vite dev server", "Celery worker"],
       "stopAll": true
     },
     {
       "name": "Flask/Celery/Beat",
-      "configurations": ["Flask", "Celery worker", "Celery beat"],
+      "configurations": [
+        "Flask (Vite dev server)",
+        "Vite dev server",
+        "Celery worker",
+        "Celery beat"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "Flask/Vite",
+      "configurations": ["Flask (Vite dev server)", "Vite dev server"],
+      "stopAll": true
+    },
+    {
+      "name": "Docker: Flask/Celery",
+      "configurations": ["Docker: Flask", "Docker: Celery worker"],
       "stopAll": true
     }
   ]
