@@ -45,7 +45,7 @@ services:
   # inside a container it is the container itself. These sidecars share the network of web /
   # worker and forward their 127.0.0.1:5000 to the host. Unused with any other EVENTCALLY_URL.
   web-eventcally: &eventcally-forward
-    image: alpine/socat:1.8.0.3
+    image: alpine/socat:1.8.1.1
     network_mode: "service:web"
     command: TCP-LISTEN:5000,bind=127.0.0.1,fork,reuseaddr TCP:host.docker.internal:5000
     depends_on:
