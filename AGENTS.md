@@ -48,3 +48,7 @@ uv run flask bff openapi > frontend/openapi.json && npm run gen:api --prefix fro
 - `.env` holds real credentials (among them a multi-line private key): do not print it, and do not pass it to tools that echo parse errors (`uv run --env-file .env` does). Use the `flask` CLI or `dotenv run`.
 - Throwaway debug output goes to `tmp/` (git and Docker ignored) or the session scratchpad, never the repo root; run `git status` before committing.
 - flake8 ignores E501 (line length): Black handles formatting.
+
+## Claude Code commands
+
+`.claude/commands/`: `/prime` (load context), `/plan` → `/implement` (plan file in `.agents/plans/`, then build it), `/pr` (commit, push, open the PR, watch the checks), `/merge` (merge commit, back to `main`, delete the branch), `/release` (`scripts/release.sh`), `/ship` (plan → implement → PR → merge with a review gate after the plan and before the merge; uses the `planner` and `implementer` agents in `.claude/agents/`). The `agent-browser` skill (`.claude/skills/`) drives a browser through the `agent-browser` CLI, if it is installed.
