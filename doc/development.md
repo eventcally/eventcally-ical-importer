@@ -62,7 +62,10 @@ Celery Flower at [http://127.0.0.1:5557]
 
 ```sh
 docker compose up --build
+docker compose exec web flask db upgrade   # first start and after new migrations
 ```
+
+The containers do not migrate on their own (as in the deployment, see `start.sh`).
 
 ### Compose with debugger and Vite dev server
 

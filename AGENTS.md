@@ -38,7 +38,7 @@ uv run flask bff openapi > frontend/openapi.json && npm run gen:api --prefix fro
 
 - Entry point: `bootstrap.py` (set via `FLASK_APP` in `.flaskenv`); it imports the global `app` from `project/__init__.py`.
 - Dev server: `uv run flask run --port 5002`.
-- Docker Compose (`docker compose up --build`) runs everything: Postgres, Redis, Flask, Celery worker/beat, Flower.
+- Docker Compose (`docker compose up --build`) runs everything: Postgres, Redis, Flask, Celery worker/beat, Flower; migrate with `docker compose exec web flask db upgrade` (the entrypoint only starts gunicorn).
 - Debug stack: `docker compose -f docker-compose.yml -f docker-compose.debug.yml up --build` (bind-mounted source, debugpy on 5680 for Flask and 5681 for the worker, Vite dev server on 5175); VS Code attaches with "Docker: Flask/Celery" (`.vscode/launch.json`).
 - Required env vars: `DATABASE_URL`, `EVENTCALLY_URL`, `EVENTCALLY_CLIENT_ID`, `EVENTCALLY_CLIENT_SECRET`, `EVENTCALLY_PRIVATE_KEY`, `EVENTCALLY_KID`, `EVENTCALLY_APP_ID`; optional `REDIS_URL`, `SECRET_KEY`, `SERVER_NAME`, `PREFERRED_URL_SCHEME`, `VITE_DEV_SERVER_URL`, `EVENTCALLY_SITE_NAME` (name of the EventCally instance in the UI texts, default `EventCally`). See `.env.example`.
 
