@@ -2,7 +2,7 @@ import { flushPromises } from "@vue/test-utils";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("@/shared/boot", () => ({
-  boot: { base: "/", locale: "en", csrfToken: "x", loginUrl: "/login" },
+  boot: { base: "/", locale: "en", csrfToken: "x", loginUrl: "/login", eventcallySiteName: "Goslar Events" },
 }));
 
 const GET = vi.fn();
@@ -76,6 +76,7 @@ describe("ConfigurationPage", () => {
     expect(link.text()).toContain("5:00:00");
     expect(link.text()).toContain("Run 8");
     const imported = wrapper.find('[data-test="imported-events"]');
+    expect(imported.findAll("th")[1].text()).toBe("Goslar Events link");
     expect(imported.find("a").attributes("href")).toBe("http://eventcally.test/event/12");
     expect(imported.find("td.json pre").text()).toContain('"name": "Sitzung"');
   });

@@ -3,6 +3,7 @@ import { onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import type { components } from "@/api/schema";
 import { api } from "@/shared/api";
+import { boot } from "@/shared/boot";
 import AppBreadcrumb from "@/shared/AppBreadcrumb.vue";
 import JsonDetails from "@/shared/JsonDetails.vue";
 import StatusBadge from "@/shared/StatusBadge.vue";
@@ -171,7 +172,7 @@ async function poll(jobId: string) {
           <thead>
             <tr>
               <th>{{ t("Vevent UID") }}</th>
-              <th>{{ t("EventCally Link") }}</th>
+              <th>{{ t("%(eventcally_site_name)s link", { eventcally_site_name: boot.eventcallySiteName }) }}</th>
               <th>{{ t("Data") }}</th>
             </tr>
           </thead>

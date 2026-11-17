@@ -7,8 +7,8 @@
       <div class="card-body p-4 p-md-5 text-center">
         <img src="{{ url_for('static', filename='calendar_icon_90.png')}}" width="72" height="72" class="bg-dark rounded-3 p-2 mb-4" alt="">
         <h1 class="h3 mt-0 mb-3">{{ title or 'iCal importer' }}</h1>
-        <p class="text-secondary mb-4">{{ _('Import the events of an iCal feed into your EventCally organization, automatically once a day.') }}</p>
-        <a class="btn btn-primary btn-lg px-4" href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt me-2" aria-hidden="true"></i>{{ _('Login with EventCally') }}</a>
+        <p class="text-secondary mb-4">{{ _('Import the events of an iCal feed into your %(eventcally_site_name)s organization, automatically once a day.', eventcally_site_name=config['EVENTCALLY_SITE_NAME']) }}</p>
+        <a class="btn btn-primary btn-lg px-4" href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt me-2" aria-hidden="true"></i>{{ _('Login with %(eventcally_site_name)s', eventcally_site_name=config['EVENTCALLY_SITE_NAME']) }}</a>
       </div>
     </div>
   </div>
