@@ -21,6 +21,7 @@ dependencies = [
     "redis>=4.5.4",
     "requests>=2.32.0",
     "SQLAlchemy>=2.0.9,<2.1",  # 2.1 defaults postgresql:// to the psycopg 3 driver
+    "structlog>=26.1.0",
     "tatsu==5.15.1",  # newer versions crash the ics import on Python 3.12
 ]
 
