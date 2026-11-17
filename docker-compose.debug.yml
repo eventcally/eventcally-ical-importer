@@ -15,8 +15,8 @@ services:
       VITE_DEV_SERVER_URL: http://localhost:5175
     volumes:
       - .:/app
-    # The entrypoint is skipped, so the migrations run here. Retried like in entrypoint.sh:
-    # a fresh database volume reports healthy while Postgres still restarts after its init.
+    # The entrypoint is skipped (and does not migrate anyway), so the migrations run here.
+    # Retried: a fresh database volume reports healthy while Postgres still restarts after its init.
     command: >
       sh -c "until flask db upgrade; do echo 'Waiting for postgres server to become available...'; sleep 2; done;
       python -m debugpy --listen 0.0.0.0:5680 -m flask run --host 0.0.0.0 --port 5002 --no-reload"

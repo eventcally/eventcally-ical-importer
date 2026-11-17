@@ -45,8 +45,13 @@ it, copy it again and run `docker compose up --detach fluentd` (or `restart flue
 ## Start
 
 ```sh
-docker compose up --force-recreate --detach
+./start.sh
 ```
+
+It starts `web`, runs the database migrations (`flask db upgrade`) and then starts the
+remaining services. The containers do not migrate on their own. On a fresh database volume
+Postgres restarts once after its init, so the migration can fail on the very first start;
+run `./start.sh` again.
 
 ## Update app
 
@@ -54,6 +59,17 @@ Adjust `WEB_TAG` in .env if necessary.
 
 ```sh
 ./update.sh
+```
+
+It pulls the app images (`web`, `worker`, `scheduler`), stops them, backs up the database,
+migrates and starts everything again. `./update_all.sh` does the same but pulls every image
+(Postgres, Redis, fluentd too).
+
+## Stop / restart
+
+```sh
+./stop.sh
+./restart.sh
 ```
 
 ## Execute commands in web container
