@@ -84,6 +84,17 @@ Attach with the VS Code launch configuration "Docker: Flask/Celery". Without Doc
 compounds "Flask/Vite" and "Flask/Celery" start Flask, the Vite dev server and the worker
 locally.
 
+## Logging
+
+The app, gunicorn and Celery log through one structlog formatter
+(`app_logging.py`). `LOG_FORMAT=json` (the default, used by the deployment's
+fluentd) writes one JSON object per line; `console` writes readable lines. `.flaskenv`
+and the dev compose set `console`. `LOG_LEVEL` (default `INFO`; the dev compose uses
+`DEBUG`) applies to all loggers. Each web line carries the `request_id` (`X-Request-ID`,
+echoed in the response), and each Celery line the `task_id`/`task_name` (plus the
+`request_id` of the request that queued the task). Pass structured fields with
+`extra=`, e.g. `app.logger.info("imported", extra={"configuration_id": 1})`.
+
 ## Database
 
 ```sh

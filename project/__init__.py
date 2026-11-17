@@ -1,4 +1,3 @@
-import logging
 import os
 from datetime import datetime, timedelta
 
@@ -82,18 +81,18 @@ app.config["SECRET_KEY"] = os.environ.get(
 )
 
 
-# Gunicorn logging
-if __name__ != "__main__":
-    gunicorn_logger = logging.getLogger("gunicorn.error")
-    if gunicorn_logger.hasHandlers():
-        app.logger.handlers = gunicorn_logger.handlers
-        app.logger.setLevel(gunicorn_logger.level)
+# Logging: one format for the app, gunicorn and Celery (LOG_FORMAT=json|console).
+# app.logger writes through the root handler, not Flask's default one.
+from app_logging import init_logging
 
-# One line logging
-from project.one_line_formatter import init_logger_with_one_line_formatter
+app.logger.handlers = []
+app.logger.propagate = True
+init_logging()
 
-init_logger_with_one_line_formatter(logging.getLogger())
-init_logger_with_one_line_formatter(app.logger)
+# Every request gets an X-Request-ID, added to each of its log lines
+from project.request_id import init_request_id
+
+init_request_id(app)
 
 
 # i18n

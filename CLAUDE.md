@@ -64,6 +64,7 @@ uv run isort . && uv run black . && uv run flake8
 - `project/ical_importer.py`: `IcalImporter.perform(configuration)`: the import itself; `dry = True` only maps the feed and logs (the form's preview)
 - `project/api_client.py`, `project/json_client.py`, `project/oauth_access.py`: the EventCally REST client
 - `project/celery_init.py`, `project/celery_tasks.py`: Celery app and the periodic tasks (daily runs, installation sync, cleanup of old runs)
+- `app_logging.py`: structlog formatter for the app, gunicorn (`GunicornLogger`) and Celery (`LOG_FORMAT=json|console`, `LOG_LEVEL`), log context helpers; `project/request_id.py`: `X-Request-ID` per request
 - `project/utils.py`: `check_session_user` / `login_required` and the app-installation sync
 - `project/bff/`: JSON for the Vue frontend under `/bff` (session + CSRF auth)
   - `routing.py`: `bff_route(...)` registers a view with pydantic query/body/response models and records it for OpenAPI
