@@ -24,6 +24,8 @@ def _configure_environment():
     os.environ.pop("SERVER_NAME", None)
     os.environ.pop("PREFERRED_URL_SCHEME", None)
     os.environ.pop("VITE_DEV_SERVER_URL", None)
+    # The tests expect the default site name; a local .env may set another one.
+    os.environ.pop("EVENTCALLY_SITE_NAME", None)
     os.environ["SECRET_KEY"] = "test"
     os.environ["EVENTCALLY_URL"] = "http://eventcally.test"
     os.environ["EVENTCALLY_CLIENT_ID"] = "client-id"
