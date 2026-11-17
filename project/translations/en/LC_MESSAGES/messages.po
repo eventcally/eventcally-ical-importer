@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-16 15:33+0100\n"
+"POT-Creation-Date: 2026-11-17 12:09+0100\n"
 "PO-Revision-Date: 2024-01-23 23:12+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -20,9 +20,9 @@ msgstr ""
 
 #: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:51
 #: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:57
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:30
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:46
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:58
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:31
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:47
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:59
 #: frontend/src/apps/importer/pages/ConfigurationsPage.vue:23
 #: frontend/src/apps/importer/pages/ConfigurationsPage.vue:39
 #: frontend/src/apps/importer/pages/RunPage.vue:36
@@ -38,7 +38,7 @@ msgid "Configuration deleted"
 msgstr ""
 
 #: frontend/src/apps/importer/pages/ConfigurationEditPage.vue:130
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:77
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:78
 #: frontend/src/apps/importer/pages/ConfigurationsPage.vue:49
 #: frontend/src/apps/importer/pages/RunPage.vue:46
 #: project/templates/layout.html:47
@@ -99,93 +99,94 @@ msgstr ""
 msgid "Delete configuration?"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:83
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:84
 #: frontend/src/apps/importer/pages/RunPage.vue:48
 msgid "Configuration"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:91
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:92
 msgid "Edit configuration"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:96
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:97
 #: frontend/src/shared/i18n.spec.ts:14 frontend/src/shared/i18n.spec.ts:25
 msgid "Loading..."
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:98
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:99
 msgid "Start run"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:106
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:107
 msgid "Feed URL"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:116
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:117
 msgid "No feed URL yet"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:123
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:124
 msgid "Runs"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:130
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:145
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:131
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:146
 #: frontend/src/apps/importer/pages/RunPage.vue:51
 #: frontend/src/apps/importer/pages/RunPage.vue:55
 msgid "Run"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:131
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:132
 msgid "Status"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:132
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:133
 #: frontend/src/apps/importer/pages/RunPage.vue:23
 msgid "New"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:133
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:134
 #: frontend/src/apps/importer/pages/RunPage.vue:24
 msgid "Updated"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:134
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:135
 #: frontend/src/apps/importer/pages/RunPage.vue:25
 msgid "Deleted"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:135
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:136
 #: frontend/src/apps/importer/pages/RunPage.vue:28
 msgid "Failures"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:159
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:160
 msgid "No runs yet"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:164
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:165
 msgid "Imported events"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:173
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:174
 msgid "Vevent UID"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:174
-msgid "EventCally Link"
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:175
+#, python-format
+msgid "%(eventcally_site_name)s link"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:175
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:176
 msgid "Data"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:187
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:188
 #: frontend/src/apps/importer/pages/RunPage.vue:93
 msgid "Show data"
 msgstr ""
 
-#: frontend/src/apps/importer/pages/ConfigurationPage.vue:193
+#: frontend/src/apps/importer/pages/ConfigurationPage.vue:194
 msgid "No imported events yet"
 msgstr ""
 
@@ -235,13 +236,15 @@ msgid "The requested resource was not found"
 msgstr ""
 
 #: project/templates/index.html:10
+#, python-format
 msgid ""
-"Import the events of an iCal feed into your EventCally organization, "
-"automatically once a day."
+"Import the events of an iCal feed into your %(eventcally_site_name)s "
+"organization, automatically once a day."
 msgstr ""
 
 #: project/templates/index.html:11
-msgid "Login with EventCally"
+#, python-format
+msgid "Login with %(eventcally_site_name)s"
 msgstr ""
 
 #: project/templates/layout.html:57

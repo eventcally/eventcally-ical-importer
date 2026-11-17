@@ -21,6 +21,7 @@ def build_boot_data() -> dict:
         "csrfToken": generate_csrf(),
         "user": {"email": current_user.email} if current_user else None,
         "loginUrl": url_for("login"),
+        "eventcallySiteName": app.config["EVENTCALLY_SITE_NAME"],
     }
 
 

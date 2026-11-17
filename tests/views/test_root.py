@@ -32,6 +32,17 @@ def test_index_is_translated(client):
     assert "Login with EventCally" in english
 
 
+def test_index_uses_the_eventcally_site_name(app, client, monkeypatch):
+    monkeypatch.setitem(app.config, "EVENTCALLY_SITE_NAME", "Goslar Events")
+
+    german = client.get("/", headers={"Accept-Language": "de"}).get_data(as_text=True)
+    english = client.get("/", headers={"Accept-Language": "en"}).get_data(as_text=True)
+
+    assert "Mit Goslar Events anmelden" in german
+    assert "your Goslar Events organization" in english
+    assert "EventCally" not in english
+
+
 def test_index_shows_the_legal_links(client):
     html = client.get("/", headers={"Accept-Language": "en"}).get_data(as_text=True)
 

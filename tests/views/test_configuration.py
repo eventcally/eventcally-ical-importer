@@ -37,6 +37,7 @@ def test_shell_hands_the_boot_data_to_the_app(client, seeder, utils):
     assert boot["loginUrl"] == "/login"
     assert boot["locale"] in ("de", "en")
     assert boot["csrfToken"]
+    assert boot["eventcallySiteName"] == "EventCally"
 
 
 def test_shells_keep_the_page_urls(client, seeder, utils):

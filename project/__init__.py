@@ -23,6 +23,8 @@ app.config["SESSION_COOKIE_NAME"] = "session_eventcally_ical_importer"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ["DATABASE_URL"]
 app.config["REDIS_URL"] = os.getenv("REDIS_URL")
 app.config["EVENTCALLY_URL"] = os.environ["EVENTCALLY_URL"]
+# Name of the EventCally instance in the UI texts (SITE_NAME of that instance).
+app.config["EVENTCALLY_SITE_NAME"] = os.getenv("EVENTCALLY_SITE_NAME", "EventCally")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECURITY_REGISTERABLE"] = False
 app.config["SECURITY_SEND_REGISTER_EMAIL"] = False

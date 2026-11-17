@@ -12,6 +12,7 @@ export interface Boot {
   csrfToken: string;
   user: { email: string } | null;
   loginUrl: string;
+  eventcallySiteName: string;
 }
 
 export function readBoot(): Boot {
